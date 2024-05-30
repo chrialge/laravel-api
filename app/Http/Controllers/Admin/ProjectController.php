@@ -53,7 +53,7 @@ class ProjectController extends Controller
             $val_data['cover_image'] = Storage::disk('public')->put('uploads/images', $val_data['cover_image']);
         }
         if ($request->has('video')) {
-            $val_data['video'] = Storage::disk('public')->put('uploads/videos', $val_data['video']);
+            $val_data['video'] = Str::of($val_data['video'])->after('https://www.youtube.com/watch?v=');
         }
 
 
@@ -124,11 +124,7 @@ class ProjectController extends Controller
 
         if ($request->has('video')) {
 
-            if ($project->video) {
-                Storage::disk('public')->delete($project->video);
-            }
-
-            $val_data['video'] = Storage::disk('public')->put('uploads/videos', $val_data['video']);
+            $val_data['video'] = Str::of($val_data['video'])->after('https://www.youtube.com/watch?v=');
         }
 
         // dd($project['cover_image'], $project->cover_image);

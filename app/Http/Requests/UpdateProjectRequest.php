@@ -24,10 +24,10 @@ class UpdateProjectRequest extends FormRequest
         return [
             'type_id' => 'nullable|exists:types,id',
             'name' => 'required',
-            'url' => 'required',
+            'url' => 'required|url',
             'technologies' => 'exists:technologies,id',
             'cover_image' => 'nullable|image|max:500',
-            'video' => 'nullable',
+            'video' => 'nullable|url',
             'status' => 'required',
             'start_date' => 'required',
             'finish_date' => 'nullable',

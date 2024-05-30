@@ -51,9 +51,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="video" class="form-label">Video</label>
-                <input type="file" class="form-control @error('video') is-invalid @enderror" name="video"
-                    id="video" aria-describedby="urlHelper" value="{{ old('video', $project->video) }}" />
+                <label for="video" class="form-label">Video Youtube url</label>
+                <input type="text" class="form-control @error('video') is-invalid @enderror" name="video"
+                    id="video" aria-describedby="urlHelper"
+                    value="{{ old('video', 'https://www.youtube.com/watch?v=' . $project->video) }}" />
                 <small id="urlHelper" class="form-text text-muted">Type a video for the current project</small>
 
                 @error('video')

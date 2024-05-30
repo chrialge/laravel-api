@@ -54,8 +54,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="video" class="form-label">Video</label>
-                <input type="file" class="form-control @error('video') is-invalid @enderror" name="video"
+                <label for="video" class="form-label">Video Youtube url</label>
+                <input type="text" class="form-control @error('video') is-invalid @enderror" name="video"
                     id="video" aria-describedby="urlHelper" value="{{ old('video') }}" />
                 <small id="urlHelper" class="form-text text-muted">Type a video for the current project</small>
 

@@ -37,7 +37,8 @@
 
                             <td>
                                 @if (Str::contains($project->cover_image, ['https://', 'http://']))
-                                    <img src="{{ $project->cover_image }}" alt="Image of project: {{ $project->title }}">
+                                    <img width="140" src="{{ $project->cover_image }}"
+                                        alt="Image of project: {{ $project->title }}">
                                 @else
                                     <img width="140" src="{{ asset('storage/' . $project->cover_image) }}"
                                         alt="{{ $project->title ? "Image of project: $project->title" : "don't image of the project" }}">

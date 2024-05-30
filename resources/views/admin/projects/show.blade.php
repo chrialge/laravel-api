@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container vh-100">
+    <div class="container " style="height: 100%; padding: 30px 0;">
         <div class="d-flex align-items-center justify-content-end gap-2">
             <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -112,15 +112,14 @@
 
                 @if (isset($project->video))
                     <h5>Videos:</h5>
-                    <video width="320" height="240" controls>
-                        @if (Str::finish($project->video, '.mp4'))
-                            <source src="{{ asset('storage/' . $project->video) }}" type="video/mp4">
-                        @elseif (Str::finish($project->video, '.webm'))
-                            <source src="{{ asset('storage/' . $project->video) }}" type="video/webm">
-                        @endif
 
-
-                    </video>
+                    @if (Str::finish($project->video, '.mp4'))
+                        <iframe width="100%" height="315"
+                            src={{ 'https://www.youtube.com/embed/' . $project->video . '?si=JcZaDnzpiorjcbfV' }}
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    @endif
                 @endif
                 <p class="py-2">
                     <strong>Notes:</strong>

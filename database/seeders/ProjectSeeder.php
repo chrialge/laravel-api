@@ -20,6 +20,7 @@ class ProjectSeeder extends Seeder
             $newProject = new Project();
             $newProject->name = $faker->word(5, true);
             $newProject->url = $faker->url();
+            $newProject->cover_image = $faker->imageUrl(600, 300, 'Posts', true, $newProject->name, true, 'jpg');
             $newProject->slug = Str::slug($newProject->name);
             $newProject->start_date = date("Y-m-d");
             $newProject->finish_date = $faker->dateTimeBetween($newProject->start_date, '+3 days');
