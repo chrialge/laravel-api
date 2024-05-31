@@ -19,7 +19,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->is_super_admin()) {
+        if (auth()->user()->admin_super()) {
+            dd(auth()->user()->admin_super());
             return view('admin.projects.index', ['projects' => Project::orderByDesc('id')->paginate(8)]);
         }
 
@@ -86,7 +87,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        if (Auth::id() === $project->user_id || auth()->user()->is_super_admin()) {
+        if (Auth::id() === $project->user_id || auth()->user()->admin_super()) {
             $id_technologies = $project->technologies;
 
             $id_tech = [];

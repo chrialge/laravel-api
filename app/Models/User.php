@@ -55,8 +55,9 @@ class User extends Authenticatable
     }
 
 
-    public function is_super_admin()
+    public function admin_super()
     {
+
         return Auth::id() === 1;
     }
 }
