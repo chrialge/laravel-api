@@ -20,7 +20,7 @@ class ProjectController extends Controller
     public function index()
     {
         if (auth()->user()->admin_super()) {
-            dd(auth()->user()->admin_super());
+            // dd(auth()->user()->admin_super());
             return view('admin.projects.index', ['projects' => Project::orderByDesc('id')->paginate(8)]);
         }
 
