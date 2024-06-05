@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
+use App\Models\Lead;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/mailable', function () {
+    $lead = Lead::find(1);
+    return new App\Mail\NewLeadMessegeMd($lead);
+    // return new App\Mail\InvoicePaid($invoice);
+});
