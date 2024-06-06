@@ -22,6 +22,7 @@ Route::get('latest', [ProjectControler::class, 'latest']);
 Route::get('projects/{project:slug}', [ProjectControler::class, 'show']);
 Route::post('contacts', [LeadController::class, 'store']);
 
+Route::get('projects_all', [ProjectControler::class, 'all']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -42,4 +42,13 @@ class ProjectControler extends Controller
             ]);
         };
     }
+
+    public function all()
+    {
+        $projects = Project::with('type', 'technologies')->orderByDesc('id')->get();
+        return response()->json([
+            'success' => true,
+            'projects' => $projects,
+        ]);
+    }
 }
