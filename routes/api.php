@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\API\ProjectControler;
+use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\LeadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('projects', [ProjectControler::class, 'index']);
-Route::get('latest', [ProjectControler::class, 'latest']);
-Route::get('projects/{project:slug}', [ProjectControler::class, 'show']);
+Route::get('projects', [ProjectController::class, 'index']);
+Route::get('latest', [ProjectController::class, 'latest']);
+Route::get('projects/{project:slug}', [ProjectController::class, 'show']);
 Route::post('contacts', [LeadController::class, 'store']);
 
-Route::get('projects_all', [ProjectControler::class, 'all']);
+Route::get('projects_all', [ProjectController::class, 'all']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

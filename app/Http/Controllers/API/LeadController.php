@@ -8,31 +8,27 @@ use App\Models\Lead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\API\StoreLeadRequest;
 
 use function Pest\Laravel\json;
 
 class LeadController extends Controller
 {
     //
-    public function store(Request $request)
+    public function store(StoreLeadRequest $request)
     {
         // variabile che recupera i dati dalla front end
-        $data = $request->all();
+
 
         // li controlla con validator
-        $validator = Validator::make($data, [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required|email',
-            'message' => 'required',
-
-        ]);
+        $val_data = $request->validated();
+        dd($val_data);
 
         // se la validazione fallisce
-        if ($validator->fails()) {
+        if ($val_data->fails()) {
             return response()->json([
                 'success' => false,
-                'errors' => $validator->errors(),
+                'errors' => $val_data->errors(),
             ]);
         }
 
@@ -41,7 +37,7 @@ class LeadController extends Controller
         // $newLead->fill($data);
         // $newLead->save();
 
-        $newLead = Lead::create($data);
+        $newLead = Lead::create($val_data);
 
         Mail::to('admin@boolfolio.com')->send(new NewLeadMessegeMd($newLead));
 
