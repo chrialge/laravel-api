@@ -62,6 +62,9 @@
                             <a class="nav-link"
                                 href="{{ route('admin.technologies.index') }}">{{ __('Technologies') }}</a>
                         </li>
+                        <li class=" nav-item">
+                            <a class="nav-link" href="{{ route('admin.notes.index') }}">{{ __('Notes') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
