@@ -65,6 +65,10 @@
                         <li class=" nav-item">
                             <a class="nav-link" href="{{ route('admin.notes.index') }}">{{ __('Notes') }}</a>
                         </li>
+                        <li class=" nav-item">
+                            <a class="nav-link"
+                                href="{{ route('admin.collaborators.index') }}">{{ __('Collaborator') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

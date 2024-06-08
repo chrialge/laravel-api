@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
 use App\Http\Controllers\Admin\NoteController;
+use App\Http\Controllers\Admin\CollaboratorController;
 use App\Models\Lead;
 
 /*
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'verified'])
         Route::resource('notes', NoteController::class)->parameters([
             'notes' => 'note:slug'
         ]);
+
+        Route::resource('collaborators', CollaboratorController::class);
     });
 
 
