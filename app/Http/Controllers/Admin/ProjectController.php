@@ -45,6 +45,9 @@ class ProjectController extends Controller
         // dd($request->all());
         // dd(Auth::user());
         $val_data = $request->validated();
+        // dd($val_data);
+
+
 
         // dd($val_data);
         $val_data['slug'] = Str::slug($val_data['name'], '-');
@@ -64,6 +67,15 @@ class ProjectController extends Controller
         // dd($val_data['cover_image']);
         // dd($val_data['slug'], $val_data);
         $project = Project::create($val_data);
+
+
+        if ($val_data['note_name'] && $val_data['note_content']) {
+
+            $newNote['name'] = $val_data['note_name'];
+            $newNote['content'] = $val_data['note_content'];
+            to_route('admin.notes.store', compact('newNote'));
+            $project->notes()->attach($newNote);
+        }
 
         if ($request->has('technologies')) {
 

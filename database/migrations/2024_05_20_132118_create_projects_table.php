@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('finish_date')->nullable();
             $table->text('description')->nullable();
-            $table->text('notes')->nullable();
             $table->tinyinteger('status')->nullable();
             $table->timestamps();
         });
