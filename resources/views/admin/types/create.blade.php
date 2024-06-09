@@ -6,7 +6,7 @@
             <div class="col">
                 <div class="d-flex align-items-center justify-content-between">
                     <h3>Add Technology</h3>
-                    <a href="{{ route('admin.technologies.index') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.types.index') }}" class="btn btn-primary">
                         <i class="fa-solid fa-arrow-left"></i>
                     </a>
 
@@ -14,7 +14,7 @@
 
                 @include('partials.validate')
 
-                <form action="{{ route('admin.technologies.store') }}" method="post">
+                <form action="{{ route('admin.types.store') }}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for=" name" class="form-label">Name</label>
@@ -25,6 +25,8 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+
 
 
                     <div class="mb-3">
