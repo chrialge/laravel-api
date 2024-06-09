@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Project;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProjectRequest extends FormRequest
+class UpdateProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,16 +23,16 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'type_id' => 'nullable|exists:types,id',
-            'name' => 'required| min: 5|max:150',
-            'url' => 'nullable|url',
+            'name' => 'required',
+            'url' => 'required|url',
             'technologies' => 'exists:technologies,id',
             'cover_image' => 'nullable|image|max:500',
             'video' => 'nullable|url',
-            'start_date' => 'nullable|date',
-            'finish_date' => 'nullable|date',
-            'description' => 'nullable|max: 500',
-            'notes' => 'nullable|max: 200',
-            'status' => 'required|integer|max:2|min:0'
+            'status' => 'required',
+            'start_date' => 'required',
+            'finish_date' => 'nullable',
+            'description' => 'nullable',
+            'notes' => 'nullable',
         ];
     }
 }

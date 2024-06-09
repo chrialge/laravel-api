@@ -141,7 +141,9 @@
             <div class="container_note p-4 rounded-5 mb-3" style="border: 2px solid rgb(113, 113, 113)">
                 <form action="{{ route('admin.notes.store') }}" method="post">
                     @csrf
-                    <div class="add_note d-flex justify-content-end">
+                    <div class="add_note d-flex justify-content-between
+                    ">
+                        <h2>Add note</h2>
                         <i class="fa-solid fa-plus btn btn-primary fs-2"></i>
                     </div>
                     <div class="mb-3">

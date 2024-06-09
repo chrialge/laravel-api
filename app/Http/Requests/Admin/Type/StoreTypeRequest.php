@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Type;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateNoteRequest extends FormRequest
+class StoreTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,7 @@ class UpdateNoteRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'project_id' => 'nullable',
-            'content' => 'required'
+            'description' => 'nullable',
         ];
     }
 }

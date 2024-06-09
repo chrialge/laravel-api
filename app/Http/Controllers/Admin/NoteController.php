@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Note;
-use App\Http\Requests\StoreNoteRequest;
-use App\Http\Requests\UpdateNoteRequest;
+use App\Http\Requests\Admin\Note\StoreNoteRequest;
+use App\Http\Requests\Admin\Note\UpdateNoteRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Support\Str;
