@@ -9,14 +9,29 @@
 
         </div>
         <div class=" py-5">
+            <div class="header pb-5">
+                <div class="header-technologies">
+                    <div class="title">
 
-            <div class="col">
+                        <h3 class=" d-inline">Technology Name: </h3>
+                        <span style="font-size: 30px;">{{ $technology->name }}</span>
+                    </div>
+                    <div class="slug fs-4 text-gray pb-5">
+                        <span>{{ $technology->slug }}</span>
+                    </div>
+                </div>
 
-                <h3 class=" d-inline">Technology Name: </h3>
-                <span style="font-size: 30px;">{{ $technology->name }}</span>
+                <div class="total_project">
+                    <h5>Number project use this technology: {{ $technology->total_projects }}</h5>
+                </div>
             </div>
 
 
+
+            <p>
+            <h4>Description: </h4>
+            {{ $technology->description ? $technology : 'N/A' }}
+            </p>
         </div>
 
 

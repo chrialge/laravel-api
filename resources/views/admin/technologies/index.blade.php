@@ -2,23 +2,26 @@
 
 @section('content')
     <div class="container" style="height: calc(100vh - 125px)">
-        <div class="d-flex align-items-center justify-content-between py-5">
-            <h3>Technology</h3>
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                Return project
-            </a>
 
-        </div>
 
-        @include('partials.validate')
+
         @include('partials.session')
 
 
 
 
-        <div class="row row-cols-2">
+        <div class="row row-cols-2 py-5">
             <div class="col">
+                <div class="d-flex align-items-center justify-content-between ">
+                    <h3>Add Technology</h3>
+                    <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        Return project
+                    </a>
+
+                </div>
+
+                @include('partials.validate')
 
                 <form action="{{ route('admin.technologies.store') }}" method="post">
                     @csrf
@@ -42,6 +45,12 @@
                 </form>
             </div>
             <div class="col">
+                <div class="d-flex align-items-center justify-content-between pb-4">
+                    <h3>Technology</h3>
+                    <a href="{{ route('admin.technologies.create') }}" class="btn btn-primary">
+                        Add technology
+                    </a>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-primary">
                         <thead>
@@ -98,6 +107,14 @@
 
                                     <td>
                                         <div class="d-flex justify-content-between alig-items-center gap-2">
+
+                                            <a href="{{ route('admin.technologies.edit', $technology) }}"
+                                                class="btn btn-warning d-flex align-items-center gap-1">
+                                                <i class="fa fa-pencil" aria-hidden="true" style="font-size: 15px"></i>
+                                                <span>Edit</span>
+                                            </a>
+
+
                                             <a href="{{ route('admin.technologies.show', $technology) }}"
                                                 class="btn btn-dark">
                                                 <i class="fa-solid fa-eye fs-sm fs-6"></i>
@@ -176,11 +193,12 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $technologies->links('pagination::bootstrap-5') }}
             </div>
         </div>
 
 
-        {{ $technologies->links('pagination::bootstrap-5') }}
+
 
     </div>
 @endsection
