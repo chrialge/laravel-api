@@ -55,4 +55,15 @@ class Project extends Model
     {
         return $this->hasMany(Note::class);
     }
+
+
+    /**
+     * The collaborators that belong to the Project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function collaborators(): BelongsToMany
+    {
+        return $this->belongsToMany(Collaborator::class);
+    }
 }

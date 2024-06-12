@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\Admin\Project\StoreProjectRequest;
 use App\Http\Requests\Admin\Project\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Collaborator;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,8 @@ class ProjectController extends Controller
     {
         $technologies = Technology::all();
         $types = Type::all();
-        return view('admin.projects.create', compact('types', 'technologies'));
+        $collaborators = Collaborator::all();
+        return view('admin.projects.create', compact('types', 'technologies', 'collaborators'));
     }
 
     /**
@@ -47,7 +49,6 @@ class ProjectController extends Controller
         // dd(Auth::user());
         $val_data = $request->validated();
         // dd($val_data);
-
 
 
         // dd($val_data);
@@ -78,6 +79,11 @@ class ProjectController extends Controller
             $newNote['project_id'] = $project->id;
             $note = Note::create($newNote);
             $project['note_id'] = $note->id;
+        }
+
+        if ($request->has('collaborators')) {
+            $project->collaborators()->attach($val_data['collaborators']);
+            dd($project);
         }
 
         if ($request->has('technologies')) {

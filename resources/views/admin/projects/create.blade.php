@@ -76,6 +76,19 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="collaborator" class="form-label">Collaborator</label>
+                <select multiple class="form-select form-select-lg" name="collaborators[]" id="">
+                    <option selected disabled>Select one</option>
+                    @foreach ($collaborators as $collaborator)
+                        <option value="{{ $collaborator->id }}">{{ $collaborator->name }}</option>
+                    @endforeach
+
+                    <option value="">Istanbul</option>
+                    <option value="">Jakarta</option>
+                </select>
+            </div>
+
 
             <div class="row">
                 <h5>Technologies</h5>
