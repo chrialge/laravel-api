@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Technology;
-use App\Http\Requests\StoreTechnologyRequest;
-use App\Http\Requests\UpdateTechnologyRequest;
+use App\Http\Requests\Admin\Technology\StoreTechnologyRequest;
+use App\Http\Requests\Admin\Technology\UpdateTechnologyRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
@@ -17,6 +17,15 @@ class TechnologyController extends Controller
     {
         $technologies = Technology::all();
         return view('admin.technologies.index', ['technologies' => Technology::orderByDesc('id')->paginate(6)]);
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('admin.technologies.create');
     }
 
 
@@ -44,7 +53,13 @@ class TechnologyController extends Controller
         return view('admin.technologies.show', compact('technology'));
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Technology $technology)
+    {
+        return view('admin.technologies.edit', compact('technology'));
+    }
 
     /**
      * Update the specified resource in storage.

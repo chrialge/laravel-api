@@ -138,14 +138,39 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="container_note p-4 rounded-5 mb-3" style="border: 2px solid rgb(113, 113, 113)">
 
-            <div class="mb-3">
-                <label for="notes" class="form-label">Notes</label>
-                <textarea class="form-control @error('notes') is-invalid @enderror" name="notes" id="notes" rows="6">{{ old('notes') }}</textarea>
-                @error('notes')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
+                <div class="add_note d-flex justify-content-between
+                    ">
+                    <h2>Add note</h2>
+                    <i class="fa-solid fa-plus btn btn-primary fs-2"></i>
+                </div>
+                <div class="mb-3">
+                    <label for="note_name" class="form-label">Name Note</label>
+                    <input type="text" class="form-control @error('note_name') is-invalid @enderror" name="note_name"
+                        id="note_name" aria-describedby="helpId" placeholder="add scroll custom" />
+                    <small id="helpId" class="form-text text-muted">Type a name for note for the current
+                        project</small>
+                    @error('note_name')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="note_content" class="form-label">Content</label>
+                    <textarea class="form-control @error('notes') is-invalid @enderror" name="note_content" id="note_content"
+                        rows="6">{{ old('notes') }}</textarea>
+                    <small id="helpId" class="form-text text-muted">Type a content for note for the current
+                        project</small>
+                    @error('note_content')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
             </div>
+
+
 
             <button class="btn btn-primary" type="submit">
                 Create

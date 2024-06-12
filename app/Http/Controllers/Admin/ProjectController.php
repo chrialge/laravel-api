@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Requests\Admin\Project\StoreProjectRequest;
+use App\Http\Requests\Admin\Project\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Note;
 
 class ProjectController extends Controller
 {
@@ -45,6 +46,9 @@ class ProjectController extends Controller
         // dd($request->all());
         // dd(Auth::user());
         $val_data = $request->validated();
+        // dd($val_data);
+
+
 
         // dd($val_data);
         $val_data['slug'] = Str::slug($val_data['name'], '-');
@@ -65,11 +69,21 @@ class ProjectController extends Controller
         // dd($val_data['slug'], $val_data);
         $project = Project::create($val_data);
 
+
+        if ($val_data['note_name'] && $val_data['note_content']) {
+
+            $newNote['name'] = $val_data['note_name'];
+            $newNote['content'] = $val_data['note_content'];
+            $newNote['slug'] = Str::slug($newNote['name'], '-');
+            $newNote['project_id'] = $project->id;
+            $note = Note::create($newNote);
+            $project['note_id'] = $note->id;
+        }
+
         if ($request->has('technologies')) {
 
             $project->technologies()->attach($val_data['technologies']);
         }
-        dd($val_data);
         // dd($project);
         return to_route('admin.projects.index')->with('message', "You created new project: $name");
     }

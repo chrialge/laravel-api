@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 70);
             $table->string('slug', 70);
+            $table->text('description')->nullable();
             $table->tinyInteger('total_projects')->default(0);
             $table->timestamps();
         });

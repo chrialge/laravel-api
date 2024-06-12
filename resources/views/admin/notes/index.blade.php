@@ -4,7 +4,13 @@
     <div class="container vh-100">
         <div class="flex row row-cols-2 py-5">
             <div class="col">
-                <h3>Add Note</h3>
+                <div class="d-flex align-items-center justify-content-between ">
+                    <h3>Add Note</h3>
+                    <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        Return project
+                    </a>
+                </div>
 
                 @include('partials.validate')
 
@@ -50,9 +56,9 @@
             </div>
             <div class="col">
                 <div class="d-flex align-items-center justify-content-between pb-4">
-                    <h3>notes</h3>
+                    <h3>Notes</h3>
                     <a href="{{ route('admin.notes.create') }}" class="btn btn-primary">
-                        Add Notes
+                        Add note
                     </a>
                 </div>
 

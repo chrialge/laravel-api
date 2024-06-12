@@ -5,10 +5,17 @@
         <div class="flex row py-5">
             <div class="col">
                 <div class="d-flex align-items-center justify-content-between pb-4">
-                    <h3>collaborators</h3>
-                    <a href="{{ route('admin.collaborators.create') }}" class="btn btn-primary">
-                        Add Notes
-                    </a>
+                    <h3>Collaborators</h3>
+                    <div class="button">
+                        <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Return project
+                        </a>
+                        <a href="{{ route('admin.collaborators.create') }}" class="btn btn-primary">
+                            Add collaborator
+                        </a>
+                    </div>
+
                 </div>
 
                 @include('partials.session')

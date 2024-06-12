@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Collaborator;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTechnologyRequest extends FormRequest
+class UpdateCollaboratorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class StoreTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:technologies,name',
-            'slug' => 'nullable',
-            'description' => 'nullable'
+            'name' => 'required',
+            'url_git' => 'url|required',
+            'content' => 'nullable'
         ];
     }
 }

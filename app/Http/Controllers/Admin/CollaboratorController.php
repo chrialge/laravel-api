@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Http\Requests\StorecollaboratorRequest;
-use App\Http\Requests\UpdatecollaboratorRequest;
+use App\Http\Requests\Admin\Collaborator\StoreCollaboratorRequest;
+use App\Http\Requests\Admin\Collaborator\UpdateCollaboratorRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Collaborator;
 use Illuminate\Support\Str;

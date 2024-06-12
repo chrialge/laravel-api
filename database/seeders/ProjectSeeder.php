@@ -25,7 +25,6 @@ class ProjectSeeder extends Seeder
             $newProject->start_date = date("Y-m-d");
             $newProject->finish_date = $faker->dateTimeBetween($newProject->start_date, '+3 days');
             $newProject->description = $faker->paragraph(2);
-            $newProject->notes = $faker->paragraph(1);
             $newProject->status = rand(0, 2);
             $newProject->save();
         }

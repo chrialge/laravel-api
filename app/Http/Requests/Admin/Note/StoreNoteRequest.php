@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Note;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorecollaboratorRequest extends FormRequest
+class StoreNoteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,8 @@ class StorecollaboratorRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'url_git' => 'url|required',
-            'content' => 'nullable'
+            'project_id' => 'nullable',
+            'content' => 'required'
         ];
     }
 }
