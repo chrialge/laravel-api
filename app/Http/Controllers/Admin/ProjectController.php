@@ -83,7 +83,6 @@ class ProjectController extends Controller
 
         if ($request->has('collaborators')) {
             $project->collaborators()->attach($val_data['collaborators']);
-            dd($project);
         }
 
         if ($request->has('technologies')) {
@@ -110,16 +109,25 @@ class ProjectController extends Controller
         if (Auth::id() === $project->user_id || auth()->user()->admin_super()) {
             $id_technologies = $project->technologies;
 
+
             $id_tech = [];
             foreach ($id_technologies as $id) {
                 array_push($id_tech, $id->id);
             }
 
+            $id_collaborators = $project->collaborators;
+            // dd($id_collaborators);
+            $id_colla = [];
+            foreach ($id_collaborators as $id) {
+                array_push($id_colla, $id->id);
+            }
+
+            $collaborators = Collaborator::all();
 
             $technologies = Technology::all();
             $types = Type::all();
 
-            return view('admin.projects.edit', compact('project', 'technologies', 'types', 'id_tech'));
+            return view('admin.projects.edit', compact('project', 'technologies', 'types', 'id_colla', 'collaborators'));
         }
         abort(403, "Don't try mess up with other user project");
     }
@@ -156,6 +164,13 @@ class ProjectController extends Controller
             $project->technologies()->sync($val_data['technologies']);
         } else {
             $project->technologies()->detach();
+        }
+
+        if ($request->has('collaborators')) {
+
+            $project->collaborators()->sync($val_data['collaborators']);
+        } else {
+            $project->collaborators()->detach();
         }
         return to_route('admin.projects.index', $project)->with('message', "You updated project: $project->name");
     }

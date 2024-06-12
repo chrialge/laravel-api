@@ -67,11 +67,26 @@
                 <select class="form-select form-select-lg" name="type_id" id="type_id">
                     <option selected disabled>Select a category</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                        <option value="{{ $type->id }}"
+                            {{ $type->id == old('type_id', $project->type_id) ? 'selected' : '' }}>
                             {{ $type->name }}</option>
                     @endforeach
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label for="collaborators" class="form-label">Collaborator</label>
+                <select multiple class="form-select form-select-lg" name="collaborators[]" id="collaborators">
+                    <option disabled>Select one</option>
+                    @foreach ($collaborators as $collaborator)
+                        <option value="{{ $collaborator->id }}"
+                            {{ $project->collaborators->contains($collaborator) ? 'selected' : '' }}>
+                            {{ $collaborator->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="row">
                 <h5>Technologies</h5>
@@ -149,13 +164,6 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="notes" class="form-label">Notes</label>
-                <textarea class="form-control @error('notes') is-invalid @enderror" name="notes" id="notes" rows="6">{{ old('notes', $project->notes) }}</textarea>
-                @error('notes')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
 
             <button class="btn btn-primary" type="submit">
                 Update
