@@ -11,6 +11,7 @@ use App\Models\Type;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Note;
 
 class ProjectController extends Controller
 {
@@ -73,15 +74,16 @@ class ProjectController extends Controller
 
             $newNote['name'] = $val_data['note_name'];
             $newNote['content'] = $val_data['note_content'];
-            to_route('admin.notes.store', compact('newNote'));
-            $project->notes()->attach($newNote);
+            $newNote['slug'] = Str::slug($newNote['name'], '-');
+            $newNote['project_id'] = $project->id;
+            $note = Note::create($newNote);
+            $project['note_id'] = $note->id;
         }
 
         if ($request->has('technologies')) {
 
             $project->technologies()->attach($val_data['technologies']);
         }
-        dd($val_data);
         // dd($project);
         return to_route('admin.projects.index')->with('message', "You created new project: $name");
     }
