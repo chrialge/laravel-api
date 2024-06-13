@@ -29,12 +29,24 @@
 
 
             <div class="mb-3">
-                <label for="url" class="form-label">URL</label>
+                <label for="url" class="form-label">URL Code</label>
                 <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" id="url"
                     aria-describedby="urlHelper" placeholder="Https://" value="{{ old('url') }}" />
                 <small id="urlHelper" class="form-text text-muted">Type a url for the current project</small>
 
                 @error('url')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="demo_project" class="form-label">Demo project</label>
+                <input type="text" class="form-control @error('demo_project') is-invalid @enderror" name="demo_project"
+                    id="demo_project" aria-describedby="urlHelper" placeholder="Https://"
+                    value="{{ old('demo_project') }}" />
+                <small id="urlHelper" class="form-text text-muted">Type a demo_project for the current project</small>
+
+                @error('demo_project')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -76,6 +88,20 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="mb-3">
+                <label for="collaborators" class="form-label">Collaborator</label>
+                <select multiple class="form-select form-select-lg" name="collaborators[]" id="collaborators">
+                    <option disabled>Select one</option>
+                    @foreach ($collaborators as $collaborator)
+                        <option value="{{ $collaborator->id }}"
+                            {{ in_array($collaborator->id, old('collaborators', [])) ? 'selected' : '' }}>
+                            {{ $collaborator->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="row">
                 <h5>Technologies</h5>

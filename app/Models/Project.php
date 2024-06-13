@@ -12,7 +12,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'url', 'cover_image', 'video', 'start_date', 'finish_date', 'description', 'status', 'slug', 'type_id', 'user_id', 'note_id'];
+    protected $fillable = ['name', 'url', 'demo_project', 'cover_image', 'video', 'start_date', 'finish_date', 'description', 'status', 'slug', 'type_id', 'user_id', 'note_id'];
 
 
 
@@ -54,5 +54,16 @@ class Project extends Model
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
+    }
+
+
+    /**
+     * The collaborators that belong to the Project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function collaborators(): BelongsToMany
+    {
+        return $this->belongsToMany(Collaborator::class);
     }
 }

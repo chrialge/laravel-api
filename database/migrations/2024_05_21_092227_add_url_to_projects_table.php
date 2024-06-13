@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             $table->string('url')->nullable()->after('name');
+            $table->string('demo_project')->nullable('name');
         });
     }
 
