@@ -40,6 +40,18 @@
             </div>
 
             <div class="mb-3">
+                <label for="demo_project" class="form-label">Demo project</label>
+                <input type="text" class="form-control @error('demo_project') is-invalid @enderror" name="demo_project"
+                    id="demo_project" aria-describedby="urlHelper" placeholder="Https://"
+                    value="{{ old('demo_project') }}" />
+                <small id="urlHelper" class="form-text text-muted">Type a demo_project for the current project</small>
+
+                @error('demo_project')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
                 <label for="cover_image" class="form-label">Image</label>
                 <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
                     id="cover_image" aria-describedby="urlHelper" value="{{ old('cover_image', $project->cover_image) }}" />

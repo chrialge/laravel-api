@@ -12,11 +12,11 @@
             </a>
 
         </div>
-        <div class="image_project">
+        <div class="image_project pt-4">
             @if (Str::contains($project->cover_image, 'https://'))
                 <img src="{{ $project->cover_image }}" alt="Image of project: {{ $project->title }}">
             @else
-                <img width="140" src="{{ asset('storage/' . $project->cover_image) }}"
+                <img width="100%" src="{{ asset('storage/' . $project->cover_image) }}"
                     alt="Image of project: {{ $project->title }}">
             @endif
         </div>

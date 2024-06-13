@@ -29,12 +29,24 @@
 
 
             <div class="mb-3">
-                <label for="url" class="form-label">URL</label>
+                <label for="url" class="form-label">URL Code</label>
                 <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" id="url"
                     aria-describedby="urlHelper" placeholder="Https://" value="{{ old('url') }}" />
                 <small id="urlHelper" class="form-text text-muted">Type a url for the current project</small>
 
                 @error('url')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="demo_project" class="form-label">Demo project</label>
+                <input type="text" class="form-control @error('demo_project') is-invalid @enderror" name="demo_project"
+                    id="demo_project" aria-describedby="urlHelper" placeholder="Https://"
+                    value="{{ old('demo_project') }}" />
+                <small id="urlHelper" class="form-text text-muted">Type a demo_project for the current project</small>
+
+                @error('demo_project')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>

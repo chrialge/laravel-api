@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
             'type_id' => 'nullable|exists:types,id',
             'name' => 'required| min: 5|max:150',
             'url' => 'nullable|url',
+            'demo_project' => 'nullable|url',
             'technologies' => 'exists:technologies,id',
             'collaborators' => 'exists:collaborators,id',
             'cover_image' => 'nullable|image|max:500',
