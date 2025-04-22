@@ -1,1 +1,174 @@
-@import '~bootstrap/scss/bootstrap'
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.logo_navbar {
+    width: 80px;
+    & > #logo_portfolio {
+        width: 100%;
+    }
+}
+
+#page_guest {
+    .navbar {
+        background-color: #ff8400;
+    }
+}
+
+.siderbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ff8400;
+    font-family: Raleway, sans-serif;
+    height: 100%;
+    width: 240px;
+    padding: 6px 14px;
+
+    & > .logo_content {
+        & > .logo {
+            width: 70px;
+            margin: 10px auto;
+            height: 50px;
+
+            & > img {
+                width: 100%;
+            }
+        }
+
+        & > #btn_siderbar {
+            position: absolute;
+            color: #fff;
+            left: 90%;
+            top: 6px;
+            font-size: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            line-height: 50px;
+            transform: translateX(-50%);
+        }
+    }
+
+    & > .nav_list {
+        margin-top: 20px;
+        padding: 0;
+
+        & > li {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin: 0 5px;
+            list-style: none;
+            line-height: 50px;
+
+            & > .tooltip_nav_list {
+                position: absolute;
+                left: 122px;
+                top: 0;
+                transform: translateY(-50%);
+                border-radius: 6px;
+                height: 35px;
+                width: 122px;
+                background: #fff;
+                line-height: 35px;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                z-index: 20;
+                overflow: visible;
+                transition: 0s;
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            &:hover .tooltip_nav_list {
+                transition: all 0.5s ease;
+                opacity: 1;
+                top: 50%;
+            }
+
+            & > a {
+                color: #fff;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                transition: all 0.4s ease;
+                border-radius: 12px;
+
+                &:hover {
+                    color: #ff8400;
+                    background-color: #fff;
+                }
+
+                & > i {
+                    height: 50px;
+                    min-width: 50px;
+                    border-radius: 12px;
+                    line-height: 50px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    & > .profile_content {
+        position: absolute;
+        color: #fff;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ff9b17;
+
+        & > .profile {
+            position: relative;
+            padding: 10px 6px;
+            height: 60px;
+
+            & > .profile_details {
+                display: flex;
+                align-items: center;
+
+                & > img {
+                    height: 45px;
+                    width: 45px;
+                    object-fit: cover;
+                }
+
+                & > .name_job {
+                    margin-left: 10px;
+
+                    & > .name {
+                        font-size: 15px;
+                        font-weight: 400;
+                    }
+
+                    & > .job {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            & > #log_out {
+                position: absolute;
+                left: 88%;
+                bottom: 5px;
+                transform: translateX(-50%);
+                min-width: 50px;
+                line-height: 50px;
+                font-size: 20px;
+                border-radius: 12px;
+            }
+        }
+    }
+}
+
+.content_page {
+    margin-left: 240px;
+    height: 100%;
+    width: calc(100% - 240px);
+}

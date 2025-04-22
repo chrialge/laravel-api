@@ -9,6 +9,7 @@ use Database\Seeders\TypeSeeder;
 use Database\Seeders\TechnologySeeder;
 use Database\Seeders\NoteSeeder;
 use Database\Seeders\CollaboratorSeeder;
+use Database\Seeders\UserSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,8 +23,8 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             TechnologySeeder::class,
             NoteSeeder::class,
-            CollaboratorSeeder::class
-
+            CollaboratorSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }
