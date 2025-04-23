@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             TechnologySeeder::class,
             NoteSeeder::class,
             CollaboratorSeeder::class,
-            UserSeeder::class,
+            UserSeeder::class
         ]);
     }
 }
