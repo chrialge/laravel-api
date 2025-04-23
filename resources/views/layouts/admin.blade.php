@@ -137,7 +137,7 @@
 
 
 
-        <main class=" bg-body-tertiary content_page">
+        <main class="content_page">
             @yield('content')
         </main>
     </div>
