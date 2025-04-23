@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'ChriPortfolio') }}</title>
 
 
     <!-- Fonts -->
@@ -40,7 +40,7 @@
 
             <ul class="nav_list">
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.dashboard') }}">
                         <i class="ri-function-line"></i>
                         <span class="links_name">
                             Dashboard
@@ -49,7 +49,7 @@
                     <span class="tooltip_nav_list">Dashboard</span>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.projects.index') }}">
                         <i class="ri-archive-2-fill"></i>
                         <span class="links_name">
                             Progetti
@@ -58,7 +58,7 @@
                     <span class="tooltip_nav_list">Progetti</span>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.technologies.index') }}">
                         <i class="ri-code-s-slash-line"></i>
                         <span class="links_name">
                             Tecnologie
@@ -67,7 +67,7 @@
                     <span class="tooltip_nav_list">Tecnologie</span>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.types.index') }}">
                         <i class="ri-stack-line"></i>
                         <span class="links_name">
                             Tipologie
@@ -76,7 +76,7 @@
                     <span class="tooltip_nav_list">Tipologie</span>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.collaborators.index') }}">
                         <i class="ri-group-2-fill"></i>
                         <span class="links_name">
                             Collaboratori
@@ -86,7 +86,7 @@
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="{{ route('admin.notes.index') }}">
                         <i class="ri-sticky-note-fill"></i>
                         <span class="links_name">
                             Note
@@ -96,7 +96,7 @@
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="{{ route('profile.update') }}">
                         <i class="ri-user-settings-fill"></i>
                         <span class="links_name">
                             Profilo
@@ -116,7 +116,18 @@
                         </div>
                     </div>
 
-                    <i class="ri-logout-box-line" id="log_out"></i>
+                    {{-- se clicco scollega l'utente --}}
+                    <a id="log_out" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        <i class="ri-logout-box-line" id="log_out"></i>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+
                 </div>
             </div>
 

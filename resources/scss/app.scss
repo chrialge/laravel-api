@@ -7,19 +7,24 @@
     box-sizing: border-box;
 }
 
+// logo for page welcome/guest
 .logo_navbar {
     width: 80px;
     & > #logo_portfolio {
         width: 100%;
     }
 }
+// end logo
 
+// page welcome/guest
 #page_guest {
     .navbar {
         background-color: #ff8400;
     }
 }
+// end page welcome/guest
 
+// rule of css for siderbar of the layout admin
 .siderbar {
     position: fixed;
     top: 0;
@@ -27,14 +32,64 @@
     background-color: #ff8400;
     font-family: Raleway, sans-serif;
     height: 100%;
-    width: 240px;
+    width: 78px;
     padding: 6px 14px;
+    transition: all 0.5s ease;
+
+    &.active {
+        width: 240px;
+
+        & > .logo_content {
+            & > .logo {
+                opacity: 1;
+                pointer-events: none;
+            }
+
+            & > #btn_siderbar {
+                left: 90%;
+            }
+        }
+
+        & > .nav_list {
+            & > li {
+                & > .tooltip_nav_list {
+                    display: none;
+                }
+
+                & > a {
+                    & > .links_name {
+                        opacity: 1;
+                        pointer-events: auto;
+                    }
+                }
+            }
+        }
+
+        & > .profile_content {
+            & > .profile {
+                background-color: #ff9b17;
+
+                & > .profile_details {
+                    opacity: 1;
+                    pointer-events: auto;
+                }
+
+                & > #log_out {
+                    left: 88%;
+                    background: none;
+                }
+            }
+        }
+    }
 
     & > .logo_content {
         & > .logo {
             width: 70px;
             margin: 10px auto;
             height: 50px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
 
             & > img {
                 width: 100%;
@@ -42,9 +97,10 @@
         }
 
         & > #btn_siderbar {
+            cursor: pointer;
             position: absolute;
             color: #fff;
-            left: 90%;
+            left: 50%;
             top: 6px;
             font-size: 20px;
             height: 50px;
@@ -58,6 +114,7 @@
     & > .nav_list {
         margin-top: 20px;
         padding: 0;
+        height: calc(100% - 150px);
 
         & > li {
             position: relative;
@@ -71,7 +128,7 @@
                 position: absolute;
                 left: 122px;
                 top: 0;
-                transform: translateY(-50%);
+                transform: translate(-50%, -50%);
                 border-radius: 6px;
                 height: 35px;
                 width: 122px;
@@ -84,6 +141,7 @@
                 transition: 0s;
                 opacity: 0;
                 pointer-events: none;
+                display: block;
             }
 
             &:hover .tooltip_nav_list {
@@ -99,6 +157,7 @@
                 align-items: center;
                 transition: all 0.4s ease;
                 border-radius: 12px;
+                white-space: nowrap;
 
                 &:hover {
                     color: #ff8400;
@@ -112,6 +171,12 @@
                     line-height: 50px;
                     text-align: center;
                 }
+
+                & > .links_name {
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: all 0.5s ease;
+                }
             }
         }
     }
@@ -122,16 +187,20 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #ff9b17;
 
         & > .profile {
             position: relative;
             padding: 10px 6px;
             height: 60px;
+            background-color: none;
+            transition: all 0.4s ease;
 
             & > .profile_details {
                 display: flex;
                 align-items: center;
+                opacity: 0;
+                pointer-events: none;
+                white-space: nowrap;
 
                 & > img {
                     height: 45px;
@@ -155,20 +224,34 @@
 
             & > #log_out {
                 position: absolute;
-                left: 88%;
+                left: 50%;
+                text-align: center;
                 bottom: 5px;
                 transform: translateX(-50%);
                 min-width: 50px;
                 line-height: 50px;
                 font-size: 20px;
                 border-radius: 12px;
+                transition: all 0.4s ease;
+                background-color: #ff9b17;
+                text-decoration: none;
+                color: #fff;
             }
         }
     }
 }
+// end siderbar
 
+// page central for every page admin
 .content_page {
-    margin-left: 240px;
+    margin-left: 78px;
     height: 100%;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+}
+
+.siderbar.active ~ .content_page {
+    margin-left: 240px;
     width: calc(100% - 240px);
 }
+// end page central
