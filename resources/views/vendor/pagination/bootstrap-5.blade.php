@@ -4,25 +4,25 @@
             <ul class="pagination">
                 {{-- Previous Page Link --}}
                 @if ($paginator->onFirstPage())
-                    <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">@lang('pagination.previous')</span>
-                    </li>
                 @else
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->previousPageUrl() }}"
-                            rel="prev">@lang('pagination.previous')</a>
+                    <li class="page_arrow page_mobile">
+                        <a href="{{ $paginator->previousPageUrl() }}" rel="prev">
+                            <span>Precedente</span>
+                            <i class="ri-arrow-left-s-line"></i>
+
+                        </a>
                     </li>
                 @endif
 
                 {{-- Next Page Link --}}
                 @if ($paginator->hasMorePages())
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a>
+                    <li class="page_arrow page_mobile">
+                        <a href="{{ $paginator->nextPageUrl() }}" rel="next">
+                            <span>Prossimo</span>
+                            <i class="ri-arrow-right-s-line"></i>
+                        </a>
                     </li>
                 @else
-                    <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">@lang('pagination.next')</span>
-                    </li>
                 @endif
             </ul>
         </div>
@@ -45,9 +45,10 @@
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
                     @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                                aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                        <li class="page_arrow">
+                            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
+                                <i class="ri-arrow-left-s-line"></i>
+                            </a>
                         </li>
                     @endif
 
@@ -63,11 +64,13 @@
                         @if (is_array($element))
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
-                                    <li class="page-item active" aria-current="page"><span
-                                            class="page-link">{{ $page }}</span></li>
+                                    <li class="page_number active" aria-current="page">
+                                        <span class="">{{ $page }}</span>
+                                    </li>
                                 @else
-                                    <li class="page-item"><a class="page-link"
-                                            href="{{ $url }}">{{ $page }}</a></li>
+                                    <li class="page_number">
+                                        <a href="{{ $url }}">{{ $page }}</a>
+                                    </li>
                                 @endif
                             @endforeach
                         @endif
@@ -75,9 +78,10 @@
 
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"
-                                aria-label="@lang('pagination.next')">&rsaquo;</a>
+                        <li class="page_arrow">
+                            <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
+                                <i class="ri-arrow-right-s-line"></i>
+                            </a>
                         </li>
                     @else
                     @endif
