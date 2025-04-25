@@ -14,3 +14,4 @@ if (document.querySelector('.siderbar')) {
         siderbar.classList.toggle("active")
     }
 }
+

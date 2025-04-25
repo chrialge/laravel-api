@@ -25,6 +25,8 @@
         crossorigin='anonymous' referrerpolicy='no-referrer' />
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
+
+    @yield('script')
 </head>
 
 <body>

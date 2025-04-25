@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Note;
+use Illuminate\Support\Facades\Http;
 
 class ProjectController extends Controller
 {
@@ -37,7 +38,33 @@ class ProjectController extends Controller
         $technologies = Technology::all();
         $types = Type::all();
         $collaborators = Collaborator::all();
-        return view('admin.projects.create', compact('types', 'technologies', 'collaborators'));
+        // $response = Http::get('https://api.github.com/users/chrialge/repos/all');
+        $projects = [];
+
+        $results = [];
+        for ($i = 1; $i < 4; $i++) {
+            $dd = Http::retry(3, 100)->withQueryParameters([
+                'type' => 'all',
+                'direction' => 'asc',
+                'page' => $i
+            ])->get('https://api.github.com/users/chrialge/repos');
+
+            array_push($results, $dd->json());
+        }
+
+        foreach ($results as $page) {
+            foreach ($page as $project) {
+                $array = [
+                    'name' => $project['name'],
+                    'url' => $project['html_url']
+                ];
+
+                array_push($projects, $array);
+            }
+        }
+
+
+        return view('admin.projects.create', compact('types', 'technologies', 'collaborators', 'projects'));
     }
 
     /**

@@ -1,5 +1,11 @@
 @extends('layouts.admin')
 
+
+@section('script')
+    <script src="{{ asset('js/project_validation.js') }}"></script>
+@endsection
+
+
 @section('content')
     {{-- BREADCRUMBS --}}
     <ul class="list-unstyled d-flex gap-2 breadcrumb_page">
@@ -58,7 +64,26 @@
         <div class="mb-3">
             <label for="url" class="form-label">URL Code</label>
             <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" id="url"
-                aria-describedby="urlHelper" placeholder="Https://" value="{{ old('url') }}" />
+                aria-describedby="urlHelper" placeholder="Https://" value="{{ old('url', 'Https://') }}"
+                onkeyup="listResult()" />
+
+            <ul id="result">
+                <li>
+                    ciao
+                </li>
+                <li>
+                    ciao
+                </li>
+                <li>
+                    ciao
+                </li>
+                <li>
+                    ciao
+                </li>
+                <li>
+                    ciao
+                </li>
+            </ul>
             <small id="urlHelper" class="form-text text-muted">Type a url for the current project</small>
 
             @error('url')

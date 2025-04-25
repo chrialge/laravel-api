@@ -423,3 +423,17 @@
 }
 
 // end pagination
+
+#result {
+    list-style: none;
+    background-color: green;
+    border-radius: 5px;
+    padding-left: 0;
+
+    & > li {
+        padding: 5px 5px;
+        &:hover {
+            background-color: gray;
+        }
+    }
+}
