@@ -50,10 +50,10 @@
         @csrf
 
         <div class="mb-3">
-            <label for="name" class="form-label">Nome Progetto</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name"
-                aria-describedby="nameHelper" placeholder="Lavarel-project" value="{{ old('name') }}" />
-            <small id="nameHelper" class="form-text text-muted">Type a name for the current project</small>
+            <label for="name" class="form-label label_create">Nome Progetto</label>
+            <input type="text" class="form-control input_create @error('name') is-invalid @enderror" name="name"
+                id="name" aria-describedby="nameHelper" placeholder="Lavarel-project" value="{{ old('name') }}" />
+
 
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -62,29 +62,14 @@
 
 
         <div class="mb-3">
-            <label for="url" class="form-label">URL Code</label>
-            <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" id="url"
-                aria-describedby="urlHelper" placeholder="Https://" value="{{ old('url', 'Https://') }}"
+            <label for="url" class="form-label label_create">URL Code</label>
+            <input type="text" class="form-control input_create @error('url') is-invalid @enderror" name="url"
+                id="url" aria-describedby="urlHelper" placeholder="https://" value="{{ old('url', 'https://') }}"
                 onkeyup="listResult()" />
 
             <ul id="result">
-                <li>
-                    ciao
-                </li>
-                <li>
-                    ciao
-                </li>
-                <li>
-                    ciao
-                </li>
-                <li>
-                    ciao
-                </li>
-                <li>
-                    ciao
-                </li>
+
             </ul>
-            <small id="urlHelper" class="form-text text-muted">Type a url for the current project</small>
 
             @error('url')
                 <div class="text-danger">{{ $message }}</div>
@@ -92,10 +77,10 @@
         </div>
 
         <div class="mb-3">
-            <label for="demo_project" class="form-label">Demo project</label>
-            <input type="text" class="form-control @error('demo_project') is-invalid @enderror" name="demo_project"
-                id="demo_project" aria-describedby="urlHelper" placeholder="Https://" value="{{ old('demo_project') }}" />
-            <small id="urlHelper" class="form-text text-muted">Type a demo_project for the current project</small>
+            <label for="demo_project" class="form-label label_create">Demo project</label>
+            <input type="text" class="form-control input_create @error('demo_project') is-invalid @enderror"
+                name="demo_project" id="demo_project" aria-describedby="urlHelper" placeholder="Https://"
+                value="{{ old('demo_project', 'https://') }}" />
 
             @error('demo_project')
                 <div class="text-danger">{{ $message }}</div>
@@ -104,12 +89,12 @@
 
 
         <div class="mb-3">
-            <label for="cover_image" class="form-label">Image</label>
-            <input type="file" class="form-control @error('cover_image') is-invalid @enderror" name="cover_image"
-                id="cover_image" aria-describedby="cover_imageHelper" placeholder="Https://"
+            <label for="cover_image" class="form-label label_create">Image</label>
+            <input type="file" class="form-control input_create input_file @error('cover_image') is-invalid @enderror"
+                name="cover_image" id="cover_image" aria-describedby="cover_imageHelper" placeholder="Https://"
                 value="{{ old('cover_image') }}" />
-            <small id="cover_imageHelper" class="form-text text-muted">Type a cover_image for the current
-                project</small>
+
+
 
             @error('cover_image')
                 <div class="text-danger">{{ $message }}</div>
@@ -159,8 +144,8 @@
             @foreach ($technologies as $technology)
                 <div class="col">
                     <div class="form-check">
-                        <input name="technologies[]" class="form-check-input" type="checkbox"
-                            value="{{ $technology->id }}" id="technology-{{ $technology->id }}"
+                        <input name="technologies[]" class="form-check-input" type="checkbox" value="{{ $technology->id }}"
+                            id="technology-{{ $technology->id }}"
                             {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }} />
                         <label class="form-check-label" for="technology-{{ $technology->id }}">
                             {{ $technology->name }} </label>
