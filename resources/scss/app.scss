@@ -426,14 +426,17 @@
 
 #result {
     list-style: none;
-    background-color: green;
+    background-color: #ff8400;
+    color: #fff;
     border-radius: 5px;
     padding-left: 0;
 
     & > li {
+        cursor: pointer;
         padding: 5px 5px;
+        border-radius: 5px;
         &:hover {
-            background-color: gray;
+            background-color: #ff9b17;
         }
     }
 }
@@ -462,4 +465,18 @@
 .input_file::file-selector-button {
     background-color: #ff8400;
     color: white;
+}
+
+.input_file:hover {
+    &::file-selector-button {
+        background-color: #ff840075 !important;
+        color: #fff;
+    }
+}
+
+.js_error {
+    display: none;
+    color: red;
+
+    padding-top: 5px;
 }

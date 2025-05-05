@@ -65,7 +65,9 @@
             <label for="url" class="form-label label_create">URL Code</label>
             <input type="text" class="form-control input_create @error('url') is-invalid @enderror" name="url"
                 id="url" aria-describedby="urlHelper" placeholder="https://" value="{{ old('url', 'https://') }}"
-                onkeyup="listResult()" />
+                onkeyup="listResult()" onblur="dropListResult()" />
+
+            <span class="js_error" id="error_url">Url invalido</span>
 
             <ul id="result">
 

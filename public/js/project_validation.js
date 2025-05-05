@@ -7,39 +7,72 @@ function listResult() {
 
     const apiUrl = 'https://api.github.com/users/chrialge/repos?type=all&per_page=81';
 
-    // // Make a GET request
-    // fetch(apiUrl)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         // console.log(data);
+    // Make a GET request
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // console.log(data);
 
-    //         let arrayResults = [];
+            let arrayResults = [];
 
-    //         data.forEach(repo => {
-    //             if (repo.html_url) {
+            data.forEach(repo => {
+                if (repo.html_url) {
 
-    //                 if (repo.html_url.includes(url)) {
-    //                     console.log(repo.html_url.includes(url));
-    //                     while (arrayResults.length < 5) {
-    //                         console.log(repo.html_url);
-    //                         arrayResults.push(repo.html_url);
+                    if (repo.html_url.includes(url)) {
+                        console.log(repo.html_url.includes(url));
 
-    //                     }
+                        if (arrayResults.length < 7) {
+                            console.log(repo.html_url);
+                            arrayResults.push(repo.html_url);
+                        }
+
+                    }
+                }
+
+            })
+            const markup = arrayResults.map(repo => `<li onclick="selectRepo(event)">${repo}</li>`).join('');
+
+            console.log(markup);
+            document.getElementById("result").innerHTML = markup;
 
 
-    //                 }
-    //             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
 
-    //         })
+function selectRepo(e) {
+    const selectedRepo = e.target.textContent;
+    document.getElementById("url").value = selectedRepo;
+    document.getElementById("result").innerHTML = ""; // Clear the list after selection
+}
+
+function dropListResult() {
 
 
-    //     })
-    //     .catch(error => {
-    //         console.error('Error:', error);
-    //     });
+    setTimeout(() => {
+        if (document.getElementById("result").innerHTML !== "") {
+            document.getElementById("result").innerHTML = ""; // Clear the list when clicking outside
+        }
+
+        const inputValue = document.getElementById("url").value.trim();
+        const regex = /^(https?:\/\/)?(www\.)?(github\.com|gitlab\.com|bitbucket\.org)\/[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/;
+        if (inputValue.match(regex)) {
+            document.getElementById("error_url").style.display = ""; // Hide error message if URL is valid
+            document.getElementById("url").style.borderColor = ""
+        } else {
+            console.log('Invalid URL');
+            document.getElementById("error_url").style.display = "block";
+            document.getElementById("url").style.borderColor = "red"
+        }
+    }, 200);
+
+
+
 }
