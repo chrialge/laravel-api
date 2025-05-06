@@ -101,219 +101,70 @@
 // end page welcome/guest
 
 // rule of css for siderbar of the layout admin
-.siderbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #ff8400;
-    font-family: Raleway, sans-serif;
-    height: 100%;
-    width: 78px;
-    padding: 6px 14px;
-    transition: all 0.5s ease;
+:root {
+    --base-clr: #ff8400;
+    --line-clr: #42434a;
+    --hover-clr: #222533;
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+}
 
-    &.active {
-        width: 240px;
+.admin_layout {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    grid-template-columns: auto 1fr;
 
-        & > .logo_content {
-            & > .logo {
-                opacity: 1;
-                pointer-events: none;
-            }
+    & > #sidebar {
+        box-sizing: border-box;
+        height: 100vh;
+        width: 250px;
+        padding: 5px 1em;
+        border-right: 1px solid var(--line-clr);
+        background-color: var(--base-clr);
 
-            & > #btn_siderbar {
-                left: 90%;
-            }
-        }
+        & > ul {
+            & > li:first-child {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 16px;
 
-        & > .nav_list {
-            & > li {
-                & > .tooltip_nav_list {
-                    display: none;
-                }
-
-                & > a {
-                    & > .links_name {
-                        opacity: 1;
-                        pointer-events: auto;
-                    }
+                & > .logo {
+                    width: 80px;
                 }
             }
-        }
 
-        & > .profile_content {
-            & > .profile {
-                background-color: #ff9b17;
-
-                & > .profile_details {
-                    opacity: 1;
-                    pointer-events: auto;
-                }
-
-                & > #log_out {
-                    left: 88%;
-                    background: none;
-                }
+            & > li.active > a {
+                color: var(--accent-clr);
             }
-        }
-    }
 
-    & > .logo_content {
-        & > .logo {
-            width: 70px;
-            margin: 10px auto;
-            height: 50px;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.5s ease;
-
-            & > img {
+            & > li > .dropdown_btn {
                 width: 100%;
+                text-align: left;
+                background: none;
+                border: none;
+                font: inherit;
+                cursor: pointer;
             }
-        }
-
-        & > #btn_siderbar {
-            cursor: pointer;
-            position: absolute;
-            color: #fff;
-            left: 50%;
-            top: 6px;
-            font-size: 20px;
-            height: 50px;
-            width: 50px;
-            text-align: center;
-            line-height: 50px;
-            transform: translateX(-50%);
         }
     }
 
-    & > .nav_list {
-        margin-top: 20px;
+    & > #sidebar ul {
+        list-style: none;
         padding: 0;
-        height: calc(100% - 150px);
-
-        & > li {
-            position: relative;
-            height: 50px;
-            width: 100%;
-            margin: 0 5px;
-            list-style: none;
-            line-height: 50px;
-
-            & > .tooltip_nav_list {
-                position: absolute;
-                left: 122px;
-                top: 0;
-                transform: translate(-50%, -50%);
-                border-radius: 6px;
-                height: 35px;
-                width: 122px;
-                background: #fff;
-                line-height: 35px;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-                z-index: 20;
-                overflow: visible;
-                transition: 0s;
-                opacity: 0;
-                pointer-events: none;
-                display: block;
-            }
-
-            &:hover .tooltip_nav_list {
-                transition: all 0.5s ease;
-                opacity: 1;
-                top: 50%;
-            }
-
-            & > a {
-                color: #fff;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                transition: all 0.4s ease;
-                border-radius: 12px;
-                white-space: nowrap;
-
-                &:hover {
-                    color: #ff8400;
-                    background-color: #fff;
-                }
-
-                & > i {
-                    height: 50px;
-                    min-width: 50px;
-                    border-radius: 12px;
-                    line-height: 50px;
-                    text-align: center;
-                }
-
-                & > .links_name {
-                    opacity: 0;
-                    pointer-events: none;
-                    transition: all 0.5s ease;
-                }
-            }
-        }
     }
 
-    & > .profile_content {
-        position: absolute;
-        color: #fff;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-
-        & > .profile {
-            position: relative;
-            padding: 10px 6px;
-            height: 60px;
-            background-color: none;
-            transition: all 0.4s ease;
-
-            & > .profile_details {
-                display: flex;
-                align-items: center;
-                opacity: 0;
-                pointer-events: none;
-                white-space: nowrap;
-
-                & > img {
-                    height: 45px;
-                    width: 45px;
-                    object-fit: cover;
-                }
-
-                & > .name_job {
-                    margin-left: 10px;
-
-                    & > .name {
-                        font-size: 15px;
-                        font-weight: 400;
-                    }
-
-                    & > .job {
-                        font-size: 12px;
-                    }
-                }
-            }
-
-            & > #log_out {
-                position: absolute;
-                left: 50%;
-                text-align: center;
-                bottom: 5px;
-                transform: translateX(-50%);
-                min-width: 50px;
-                line-height: 50px;
-                font-size: 20px;
-                border-radius: 12px;
-                transition: all 0.4s ease;
-                background-color: #ff9b17;
-                text-decoration: none;
-                color: #fff;
-            }
-        }
+    & > #sidebar a,
+    & > #sidebar .dropdown_btn,
+    & > #sidebar .logo {
+        border-radius: 0.5em;
+        padding: 0.85em;
+        text-decoration: none;
+        color: var(--text-clr);
+        display: flex;
+        align-items: center;
+        gap: 1em;
     }
 }
 // end siderbar
@@ -513,6 +364,91 @@
                 color: #ff8400;
                 font-weight: 600;
             }
+        }
+    }
+
+    & > .dates_project {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+
+        & > .field_date {
+            flex: 1;
+
+            & > .label_create {
+                color: hsl(228, 8%, 56%);
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            & > .input_create {
+                border: 2px solid #ff8400;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    color: #ff8400;
+
+                    border-color: #ff8400;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.25rem #ff840051;
+                }
+            }
+        }
+    }
+
+    & > .container_note {
+        border: 2px solid #ff8400;
+        border-radius: 10px;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+
+        & > .header_note {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            background-color: #ff8400;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+
+            & > h2 {
+                margin: 0;
+            }
+            & > i {
+                font-size: 20px;
+            }
+        }
+
+        & > .mb-3 {
+            & > .label_create {
+                color: hsl(228, 8%, 56%);
+                font-weight: 600;
+                margin-bottom: 5px;
+            }
+
+            & > .input_create {
+                border: 2px solid #ff8400;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    color: #ff8400;
+
+                    border-color: #ff8400;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.25rem #ff840051;
+                }
+            }
+        }
+    }
+
+    & > .container_btn {
+        margin-bottom: 40px;
+
+        & > .btn_loading {
+            display: none;
         }
     }
 }

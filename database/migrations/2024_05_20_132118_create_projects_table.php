@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('video')->nullable();
             $table->string('cover_image')->nullable();
             $table->string('demo_project')->nullable();
-            $table->date('start_date')->nullable();
+            $table->date('start_date');
             $table->date('finish_date')->nullable();
             $table->text('description')->nullable();
             $table->tinyinteger('status')->nullable();

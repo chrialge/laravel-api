@@ -4,6 +4,11 @@ import * as bootstrap from 'bootstrap';
 import.meta.glob([
     '../img/**'
 ])
+import flatpickr from 'flatpickr';
+
+import {
+    Italian
+} from "flatpickr/dist/l10n/it.js";
 
 
 if (document.querySelector('.siderbar')) {
@@ -15,3 +20,23 @@ if (document.querySelector('.siderbar')) {
     }
 }
 
+if (document.getElementById("start_date")) {
+
+    flatpickr("#start_date", {
+        locale: Italian,
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "d/m/Y",
+        allowInput: true,
+    });
+}
+
+if (document.getElementById("finish_date")) {
+    flatpickr("#finish_date", {
+        locale: Italian,
+        dateFormat: "Y-m-d",
+        altInput: true,
+        altFormat: "d/m/Y",
+        allowInput: true,
+    });
+}

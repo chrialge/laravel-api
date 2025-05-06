@@ -93,7 +93,7 @@
 
 
         <div class="mb-3">
-            <label for="cover_image" class="form-label label_create">Image</label>
+            <label for="cover_image" class="form-label label_create">Immagine</label>
             <input type="file" class="form-control input_create input_file @error('cover_image') is-invalid @enderror"
                 name="cover_image" id="cover_image" aria-describedby="cover_imageHelper" placeholder="Https://"
                 value="{{ old('cover_image') }}" />
@@ -119,7 +119,7 @@
 
 
         <div class="mb-3">
-            <label for="type_id" class="form-label label_create">Type</label>
+            <label for="type_id" class="form-label label_create">Tipologia</label>
             <select class="form-select form-select-lg" name="type_id" id="type_id">
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
@@ -129,7 +129,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="collaborators" class="form-label label_create">Collaborator</label>
+            <label for="collaborators" class="form-label label_create">Collaboratori</label>
             <select multiple class="form-select form-select-lg" name="collaborators[]" id="collaborators">
                 <option disabled>Select one</option>
                 @foreach ($collaborators as $collaborator)
@@ -143,7 +143,7 @@
 
 
         <div class="row mb-3">
-            <h5 class="label_create mb-2">Technologies</h5>
+            <h5 class="label_create mb-2">Tecnologie</h5>
             @foreach ($technologies as $technology)
                 <div class="col">
                     <div class="form-check">
@@ -163,32 +163,30 @@
         <div class="mb-3">
             <label for="status" class="form-label label_create">Status</label>
             <select class="form-select form-select-lg" name="status" id="status">
-                <option value="0">Completed</option>
-                <option value="1">Incompleted</option>
-                <option value="2" selected>don't initialized</option>
+                <option value="0">Completa</option>
+                <option value="1">Incompleta</option>
+                <option value="2" selected>Inizializzata</option>
             </select>
         </div>
 
         <div class="dates_project">
-            <div class="mb-3">
-                <label for="start_date" class="form-label">Start Date</label>
-                <input type="text" class="form-control @error('start_date') is-invalid @enderror" name="start_date"
-                    id="start_date" aria-describedby="startDateHelper" placeholder="2024-03-20"
+            <div class="field_date">
+                <label for="start_date" class="form-label label_create">Data d'inizio*</label>
+                <input type="date" class="form-control input_create @error('start_date') is-invalid @enderror"
+                    name="start_date" id="start_date" aria-describedby="startDateHelper" placeholder="19/04/2025"
                     value="{{ old('start_date') }}" />
-                <small id="startDateHelper" class="form-text text-muted">Type a start date for the current project</small>
 
                 @error('start_date')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label for="finish_date" class="form-label">Finish Date</label>
-                <input type="text" class="form-control @error('finish_date') is-invalid @enderror" name="finish_date"
-                    id="finish_date" aria-describedby="finishDateHelper" placeholder="2024-03-20"
+            <div class="field_date">
+                <label for="finish_date" class="form-label label_create">Data di fine</label>
+                <input type="date" class="form-control input_create @error('finish_date') is-invalid @enderror"
+                    name="finish_date" id="finish_date" aria-describedby="finishDateHelper" placeholder="20/04/2025"
                     value="{{ old('finish_date') }}" />
-                <small id="finishDateHelper" class="form-text text-muted">Type a finish date for the current
-                    project</small>
+
 
                 @error('finish_date')
                     <div class="text-danger">{{ $message }}</div>
@@ -200,26 +198,26 @@
 
 
         <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                rows="6">{{ old('description') }}</textarea>
+            <label for="description" class="form-label label_create">Description</label>
+            <textarea class="form-control input_create @error('description') is-invalid @enderror" name="description"
+                id="description" rows="6">{{ old('description') }}</textarea>
             @error('description')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
-        <div class="container_note p-4 rounded-5 mb-3" style="border: 2px solid rgb(113, 113, 113)">
 
-            <div class="add_note d-flex justify-content-between
-                    ">
-                <h2>Add note</h2>
-                <i class="fa-solid fa-plus btn btn-primary fs-2"></i>
+
+        <div class="container_note ">
+
+            <div class="header_note">
+                <h2>Aggiungi nota</h2>
+                <i class="fa-solid fa-plus"></i>
             </div>
             <div class="mb-3">
-                <label for="note_name" class="form-label">Name Note</label>
-                <input type="text" class="form-control @error('note_name') is-invalid @enderror" name="note_name"
-                    id="note_name" aria-describedby="helpId" placeholder="add scroll custom" />
-                <small id="helpId" class="form-text text-muted">Type a name for note for the current
-                    project</small>
+                <label for="note_name" class="form-label label_create">Titolo nota</label>
+                <input type="text" class="form-control input_create @error('note_name') is-invalid @enderror"
+                    name="note_name" id="note_name" aria-describedby="helpId" placeholder="add scroll custom" />
+
                 @error('note_name')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -227,11 +225,10 @@
 
 
             <div class="mb-3">
-                <label for="note_content" class="form-label">Content</label>
-                <textarea class="form-control @error('notes') is-invalid @enderror" name="note_content" id="note_content"
-                    rows="6">{{ old('notes') }}</textarea>
-                <small id="helpId" class="form-text text-muted">Type a content for note for the current
-                    project</small>
+                <label for="note_content" class="form-label label_create">Descrizione nota</label>
+                <textarea class="form-control input_create @error('notes') is-invalid @enderror" name="note_content"
+                    id="note_content" rows="6">{{ old('notes') }}</textarea>
+
                 @error('note_content')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -240,10 +237,17 @@
         </div>
 
 
+        <div class="container_btn">
+            <button class="btn btn-primary" type="submit">
+                Crea Progetto
+            </button>
 
-        <button class="btn btn-primary" type="submit">
-            Create
-        </button>
+            <button class="btn btn-primary btn_loading" disabled>
+                Attendi...
+            </button>
+        </div>
+
+
 
     </form>
 @endsection
