@@ -46,11 +46,11 @@
     @include('partials.validate')
 
     {{-- @include('partials.validator_error') --}}
-    <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
+    <form class="form_project" action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
-            <label for="name" class="form-label label_create">Nome Progetto</label>
+            <label for="name" class="form-label label_create">Nome Progetto*</label>
             <input type="text" class="form-control input_create @error('name') is-invalid @enderror" name="name"
                 id="name" aria-describedby="nameHelper" placeholder="Lavarel-project" value="{{ old('name') }}" />
 
@@ -62,12 +62,12 @@
 
 
         <div class="mb-3">
-            <label for="url" class="form-label label_create">URL Code</label>
+            <label for="url" class="form-label label_create">URL Git*</label>
             <input type="text" class="form-control input_create @error('url') is-invalid @enderror" name="url"
                 id="url" aria-describedby="urlHelper" placeholder="https://" value="{{ old('url', 'https://') }}"
                 onkeyup="listResult()" onblur="dropListResult()" />
 
-            <span class="js_error" id="error_url">Url invalido</span>
+            <span class="js_error" id="error_url">Url di git non valido</span>
 
             <ul id="result">
 
@@ -79,10 +79,12 @@
         </div>
 
         <div class="mb-3">
-            <label for="demo_project" class="form-label label_create">Demo project</label>
+            <label for="demo_project" class="form-label label_create">URl Demo</label>
             <input type="text" class="form-control input_create @error('demo_project') is-invalid @enderror"
                 name="demo_project" id="demo_project" aria-describedby="urlHelper" placeholder="Https://"
-                value="{{ old('demo_project', 'https://') }}" />
+                value="{{ old('demo_project', 'https://') }}" onkeyup="hideErrorUrlDemo()" onblur="checkUrlDemo()" />
+
+            <span class="js_error" id="error_url_demo">Link non valido</span>
 
             @error('demo_project')
                 <div class="text-danger">{{ $message }}</div>
@@ -96,18 +98,18 @@
                 name="cover_image" id="cover_image" aria-describedby="cover_imageHelper" placeholder="Https://"
                 value="{{ old('cover_image') }}" />
 
-
-
             @error('cover_image')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="mb-3">
-            <label for="video" class="form-label">Video Youtube url</label>
-            <input type="text" class="form-control @error('video') is-invalid @enderror" name="video" id="video"
-                aria-describedby="urlHelper" value="{{ old('video') }}" />
-            <small id="urlHelper" class="form-text text-muted">Type a video for the current project</small>
+            <label for="video" class="form-label label_create">Video Youtube url</label>
+            <input type="text" class="form-control input_create @error('video') is-invalid @enderror" name="video"
+                id="video" aria-describedby="urlHelper" value="{{ old('video', 'https://') }}"
+                onkeyup="hideErrorVideo()" onblur="checkVideo()" />
+
+            <span class="js_error" id="error_video">Url di youtube non valido</span>
 
             @error('video')
                 <div class="text-video">{{ $message }}</div>
@@ -117,9 +119,8 @@
 
 
         <div class="mb-3">
-            <label for="type_id" class="form-label">Type</label>
+            <label for="type_id" class="form-label label_create">Type</label>
             <select class="form-select form-select-lg" name="type_id" id="type_id">
-                <option selected disabled>Select a category</option>
                 @foreach ($types as $type)
                     <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
                         {{ $type->name }}</option>
@@ -128,7 +129,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="collaborators" class="form-label">Collaborator</label>
+            <label for="collaborators" class="form-label label_create">Collaborator</label>
             <select multiple class="form-select form-select-lg" name="collaborators[]" id="collaborators">
                 <option disabled>Select one</option>
                 @foreach ($collaborators as $collaborator)
@@ -141,13 +142,13 @@
         </div>
 
 
-        <div class="row">
-            <h5>Technologies</h5>
+        <div class="row mb-3">
+            <h5 class="label_create mb-2">Technologies</h5>
             @foreach ($technologies as $technology)
                 <div class="col">
                     <div class="form-check">
-                        <input name="technologies[]" class="form-check-input" type="checkbox" value="{{ $technology->id }}"
-                            id="technology-{{ $technology->id }}"
+                        <input name="technologies[]" class="form-check-input" type="checkbox"
+                            value="{{ $technology->id }}" id="technology-{{ $technology->id }}"
                             {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }} />
                         <label class="form-check-label" for="technology-{{ $technology->id }}">
                             {{ $technology->name }} </label>
@@ -160,7 +161,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
+            <label for="status" class="form-label label_create">Status</label>
             <select class="form-select form-select-lg" name="status" id="status">
                 <option value="0">Completed</option>
                 <option value="1">Incompleted</option>
@@ -168,31 +169,35 @@
             </select>
         </div>
 
+        <div class="dates_project">
+            <div class="mb-3">
+                <label for="start_date" class="form-label">Start Date</label>
+                <input type="text" class="form-control @error('start_date') is-invalid @enderror" name="start_date"
+                    id="start_date" aria-describedby="startDateHelper" placeholder="2024-03-20"
+                    value="{{ old('start_date') }}" />
+                <small id="startDateHelper" class="form-text text-muted">Type a start date for the current project</small>
 
-        <div class="mb-3">
-            <label for="start_date" class="form-label">Start Date</label>
-            <input type="text" class="form-control @error('start_date') is-invalid @enderror" name="start_date"
-                id="start_date" aria-describedby="startDateHelper" placeholder="2024-03-20"
-                value="{{ old('start_date') }}" />
-            <small id="startDateHelper" class="form-text text-muted">Type a start date for the current project</small>
+                @error('start_date')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
-            @error('start_date')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+            <div class="mb-3">
+                <label for="finish_date" class="form-label">Finish Date</label>
+                <input type="text" class="form-control @error('finish_date') is-invalid @enderror" name="finish_date"
+                    id="finish_date" aria-describedby="finishDateHelper" placeholder="2024-03-20"
+                    value="{{ old('finish_date') }}" />
+                <small id="finishDateHelper" class="form-text text-muted">Type a finish date for the current
+                    project</small>
+
+                @error('finish_date')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="finish_date" class="form-label">Finish Date</label>
-            <input type="text" class="form-control @error('finish_date') is-invalid @enderror" name="finish_date"
-                id="finish_date" aria-describedby="finishDateHelper" placeholder="2024-03-20"
-                value="{{ old('finish_date') }}" />
-            <small id="finishDateHelper" class="form-text text-muted">Type a finish date for the current
-                project</small>
 
-            @error('finish_date')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
-        </div>
+
 
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>

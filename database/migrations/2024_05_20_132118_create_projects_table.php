@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name', 150);
-            $table->string('slug', 250)->nullable();
+            $table->string('slug', 250);
+            $table->string('url');
+            $table->string('video')->nullable();
+            $table->string('cover_image')->nullable();
+            $table->string('demo_project')->nullable();
             $table->date('start_date')->nullable();
             $table->date('finish_date')->nullable();
             $table->text('description')->nullable();

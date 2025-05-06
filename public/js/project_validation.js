@@ -76,3 +76,55 @@ function dropListResult() {
 
 
 }
+
+
+function checkUrlDemo() {
+    const inputValue = document.getElementById('demo_project').value.trim();
+    const error = document.getElementById('error_url_demo');
+    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
+    if (!inputValue.match(regex)) {
+        error.style.display = "block";
+        document.getElementById("demo_project").style.borderColor = "red"
+        return false;
+    } else {
+        return true;
+    }
+}
+
+
+function hideErrorUrlDemo() {
+    const inputValue = document.getElementById('demo_project').value.trim();
+    const error = document.getElementById('error_url_demo');
+    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
+    if (inputValue.match(regex)) {
+        error.style.display = "none"; // Hide error message if URL is valid
+        document.getElementById("demo_project").style.borderColor = ""
+    }
+}
+
+function checkVideo() {
+    const inputValue = document.getElementById('video').value.trim();
+    const error = document.getElementById('error_video');
+    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
+    if (!inputValue.match(regex)) {
+        error.style.display = "block";
+        document.getElementById("video").style.borderColor = "red"
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function hideErrorVideo() {
+    const inputValue = document.getElementById('video').value.trim();
+    const error = document.getElementById('error_video');
+    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
+    if (inputValue.match(regex)) {
+        error.style.display = "none"; // Hide error message if URL is valid
+        document.getElementById("video").style.borderColor = ""
+    }
+}

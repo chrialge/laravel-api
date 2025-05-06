@@ -443,40 +443,76 @@
 
 // input region
 
-.input_create {
-    border: 2px solid #ff8400;
-    transition: all 0.3s ease;
+.form_project {
+    & > .mb-3 {
+        & > .label_create {
+            color: hsl(228, 8%, 56%);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
 
-    &:focus {
-        color: #ff8400;
+        & > .input_create {
+            border: 2px solid #ff8400;
+            transition: all 0.3s ease;
 
-        border-color: #ff8400;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem #ff840051;
+            &:focus {
+                color: #ff8400;
+
+                border-color: #ff8400;
+                outline: 0;
+                box-shadow: 0 0 0 0.25rem #ff840051;
+            }
+        }
+
+        & > .input_file::file-selector-button {
+            background-color: #ff8400;
+            color: white;
+        }
+
+        & > .input_file:hover {
+            &::file-selector-button {
+                background-color: #ff840075 !important;
+            }
+        }
+
+        & > .js_error {
+            display: none;
+            color: red;
+            padding-top: 5px;
+        }
+
+        & > .form-select {
+            border: 2px solid #ff8400;
+            transition: all 0.3s ease;
+
+            &:focus {
+                color: #ff8400;
+
+                border-color: #ff8400;
+                outline: 0;
+                box-shadow: 0 0 0 0.25rem #ff840051;
+            }
+        }
+
+        & > .col > .form-check {
+            & > .form-check-input {
+                cursor: pointer;
+
+                &:checked {
+                    background-color: #ff8400;
+                    border-color: #ff8400;
+                }
+
+                &:focus {
+                    box-shadow: 0 0 0 0.25rem #ff840051;
+                    border-color: #ff8400;
+                }
+            }
+
+            & > .form-check-label {
+                color: #ff8400;
+                font-weight: 600;
+            }
+        }
     }
-}
-
-.label_create {
-    color: hsl(228, 8%, 56%);
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.input_file::file-selector-button {
-    background-color: #ff8400;
-    color: white;
-}
-
-.input_file:hover {
-    &::file-selector-button {
-        background-color: #ff840075 !important;
-        color: #fff;
-    }
-}
-
-.js_error {
-    display: none;
-    color: red;
-
-    padding-top: 5px;
 }
