@@ -49,7 +49,7 @@
                 </li>
 
                 <li class="active">
-                    <a href="{{ route('admin.dashboard') }}">
+                    <a class="page_route" href="{{ route('admin.dashboard') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                             fill="#e3e3e3">
                             <path
@@ -76,27 +76,27 @@
                     <ul class="sub-menu">
                         <div>
                             <li>
-                                <a href="{{ route('admin.projects.create') }}">
+                                <a class="page_route" href="{{ route('admin.projects.create') }}">
                                     Progetto
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.technologies.create') }}">
+                                <a class="page_route" href="{{ route('admin.technologies.create') }}">
                                     Tecnlogia
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.types.create') }}">
+                                <a class="page_route" href="{{ route('admin.types.create') }}">
                                     Tipologia
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.collaborators.create') }}">
+                                <a class="page_route" href="{{ route('admin.collaborators.create') }}">
                                     Collaboratore
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.notes.create') }}">
+                                <a class="page_route" href="{{ route('admin.notes.create') }}">
                                     Nota
                                 </a>
                             </li>
@@ -121,27 +121,27 @@
                     <ul class="sub-menu">
                         <div>
                             <li>
-                                <a href="{{ route('admin.projects.index') }}">
+                                <a class="page_route" href="{{ route('admin.projects.index') }}">
                                     Progetto
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.technologies.index') }}">
+                                <a class="page_route" href="{{ route('admin.technologies.index') }}">
                                     Tecnlogia
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.types.index') }}">
+                                <a class="page_route" href="{{ route('admin.types.index') }}">
                                     Tipologia
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.collaborators.index') }}">
+                                <a class="page_route" href="{{ route('admin.collaborators.index') }}">
                                     Collaboratore
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.notes.index') }}">
+                                <a class="page_route" href="{{ route('admin.notes.index') }}">
                                     Nota
                                 </a>
                             </li>
@@ -150,7 +150,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('profile.edit') }}">
+                    <a class="page_route" href="{{ route('profile.edit') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                             fill="#e3e3e3">
                             <path
@@ -162,11 +162,11 @@
 
                 <li>
                     {{-- se clicco scollega l'utente --}}
-                    <a class="sidebar__link" href="{{ route('logout') }}"
+                    <a class="page_route" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                            fill="#e3e3e3">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+                            width="24px" fill="#e3e3e3">
                             <path
                                 d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
                         </svg>

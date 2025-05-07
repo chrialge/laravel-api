@@ -40,3 +40,4 @@ if (document.getElementById("finish_date")) {
         allowInput: true,
     });
 }
+
