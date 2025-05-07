@@ -123,20 +123,42 @@
         padding: 5px 1em;
         border-right: 1px solid var(--line-clr);
         background-color: var(--base-clr);
+        position: sticky;
+        top: 0;
+        align-self: start;
+        transition: 300ms ease-in-out;
+        overflow-x: hidden;
+        text-wrap: nowrap;
+
+        &.close {
+            padding: 5px;
+            width: 60px;
+        }
 
         & > ul {
             & > li:first-child {
                 display: flex;
                 justify-content: flex-end;
                 margin-bottom: 16px;
+                padding-left: 0.85em;
 
                 & > .logo {
-                    width: 80px;
+                    margin-right: 1.2em;
+                    width: 65px;
+                    text-decoration: none;
+                    color: var(--text-clr);
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
                 }
             }
 
             & > li.active > a {
                 color: var(--accent-clr);
+
+                & > svg {
+                    fill: var(--accent-clr);
+                }
             }
 
             & > li > .dropdown_btn {
@@ -155,9 +177,23 @@
         padding: 0;
     }
 
+    & > #sidebar svg {
+        flex-shrink: 0;
+        font-size: 22px;
+    }
+
+    & > #sidebar a span,
+    & > #sidebar .dropdown_btn span {
+        flex-grow: 1;
+    }
+
+    & > #sidebar a:hover,
+    & > #sidebar .dropdown_btn:hover {
+        background-color: var(--hover-clr);
+    }
+
     & > #sidebar a,
-    & > #sidebar .dropdown_btn,
-    & > #sidebar .logo {
+    & > #sidebar .dropdown_btn {
         border-radius: 0.5em;
         padding: 0.85em;
         text-decoration: none;
@@ -165,6 +201,51 @@
         display: flex;
         align-items: center;
         gap: 1em;
+    }
+
+    & > #sidebar .sub-menu {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: 300ms ease-in-out;
+
+        & a {
+            padding-left: 2em;
+        }
+
+        & > div {
+            overflow: hidden;
+        }
+    }
+
+    & > #sidebar .sub-menu.show {
+        grid-template-rows: 1fr;
+    }
+}
+
+.dropdown_btn svg {
+    transition: 200ms ease;
+}
+
+.rotate svg:last-child {
+    rotate: 180deg;
+}
+
+#toggle_btn {
+    margin-left: auto;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.5em;
+    background: none;
+    cursor: pointer;
+
+    & > svg {
+        transition: rotate 150ms ease;
+        color: var(--text-clr);
+        font-size: 22px;
+    }
+
+    &:hover {
+        background-color: var(--hover-clr);
     }
 }
 // end siderbar
