@@ -22,26 +22,13 @@ function listResult() {
             let arrayResults = [];
 
             data.forEach(repo => {
-                if (repo.html_url) {
-
-                    if (repo.html_url.includes(url)) {
-                        console.log(repo.html_url.includes(url));
-
-                        if (arrayResults.length < 7) {
-                            console.log(repo.html_url);
-                            arrayResults.push(repo.html_url);
-                        }
-
-                    }
+                if (repo.html_url.includes(url) && arrayResults.length < 7) {
+                    arrayResults.push(repo.html_url);
                 }
-
             })
             const markup = arrayResults.map(repo => `<li onclick="selectRepo(event)">${repo}</li>`).join('');
 
-            console.log(markup);
             document.getElementById("result").innerHTML = markup;
-
-
         })
         .catch(error => {
             console.error('Error:', error);
@@ -127,5 +114,27 @@ function hideErrorVideo() {
     if (inputValue.match(regex)) {
         error.style.display = "none"; // Hide error message if URL is valid
         document.getElementById("video").style.borderColor = ""
+    }
+}
+
+
+function checkForm(e) {
+
+    const btnEl = document.querySelector('.button_create');
+    const btnLoadingEl = document.querySelector('.btn_loading');
+
+    btnEl.style.display = "none";
+    btnLoadingEl.style.display = "block"
+
+    if (document.getElementById('demo_project').value.length > 0 && checkUrlDemo()) {
+        btnEl.style.display = "";
+        btnLoadingEl.style.display = "";
+        e.preventDefault();
+    }
+
+    if (document.getElementById('video').value.length > 0 && checkVideo()) {
+        btnEl.style.display = "";
+        btnLoadingEl.style.display = "";
+        e.preventDefault();
     }
 }

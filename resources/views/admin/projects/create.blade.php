@@ -45,8 +45,8 @@
 
     @include('partials.validate')
 
-    {{-- @include('partials.validator_error') --}}
-    <form class="form_project" action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
+    <form class="form_project" action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data"
+        onsubmit="checkForm(event)">
         @csrf
 
         <div class="mb-3">
@@ -81,8 +81,8 @@
         <div class="mb-3">
             <label for="demo_project" class="form-label label_create">URl Demo</label>
             <input type="text" class="form-control input_create @error('demo_project') is-invalid @enderror"
-                name="demo_project" id="demo_project" aria-describedby="urlHelper" placeholder="Https://"
-                value="{{ old('demo_project', 'https://') }}" onkeyup="hideErrorUrlDemo()" onblur="checkUrlDemo()" />
+                name="demo_project" id="demo_project" aria-describedby="urlHelper" placeholder="https://"
+                value="{{ old('demo_project') }}" onkeyup="hideErrorUrlDemo()" onblur="checkUrlDemo()" />
 
             <span class="js_error" id="error_url_demo">Link non valido</span>
 
@@ -106,8 +106,8 @@
         <div class="mb-3">
             <label for="video" class="form-label label_create">Video Youtube url</label>
             <input type="text" class="form-control input_create @error('video') is-invalid @enderror" name="video"
-                id="video" aria-describedby="urlHelper" value="{{ old('video', 'https://') }}"
-                onkeyup="hideErrorVideo()" onblur="checkVideo()" />
+                id="video" aria-describedby="urlHelper" value="{{ old('video') }}" onkeyup="hideErrorVideo()"
+                onblur="checkVideo()" placeholder="https://" />
 
             <span class="js_error" id="error_video">Url di youtube non valido</span>
 
@@ -163,9 +163,9 @@
         <div class="mb-3">
             <label for="status" class="form-label label_create">Status</label>
             <select class="form-select form-select-lg" name="status" id="status">
-                <option value="0">Completa</option>
-                <option value="1">Incompleta</option>
-                <option value="2" selected>Inizializzata</option>
+                <option value="0">Completo</option>
+                <option value="1">Incompleto</option>
+                <option value="2" selected>Inizializzato</option>
             </select>
         </div>
 
@@ -198,7 +198,7 @@
 
 
         <div class="mb-3">
-            <label for="description" class="form-label label_create">Description</label>
+            <label for="description" class="form-label label_create">Descrizione</label>
             <textarea class="form-control input_create @error('description') is-invalid @enderror" name="description"
                 id="description" rows="6">{{ old('description') }}</textarea>
             @error('description')
@@ -238,7 +238,7 @@
 
 
         <div class="container_btn">
-            <button class="btn btn-primary" type="submit">
+            <button class="btn btn-primary button_create" type="submit">
                 Crea Progetto
             </button>
 
@@ -246,8 +246,6 @@
                 Attendi...
             </button>
         </div>
-
-
 
     </form>
 @endsection

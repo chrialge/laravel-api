@@ -507,6 +507,7 @@
 // input region
 
 .form_project {
+    padding-bottom: 70px;
     & > .mb-3 {
         & > .label_create {
             color: hsl(228, 8%, 56%);
@@ -771,6 +772,123 @@
             & > div {
                 width: 100%;
             }
+        }
+    }
+}
+
+.form_small {
+    padding-bottom: 20px;
+    & > .mb-3 {
+        & > .label_create {
+            color: hsl(228, 8%, 56%);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        & > .input_create {
+            border: 2px solid #ff8400;
+            transition: all 0.3s ease;
+
+            &:focus {
+                color: #ff8400;
+
+                border-color: #ff8400;
+                outline: 0;
+                box-shadow: 0 0 0 0.25rem #ff840051;
+            }
+        }
+    }
+
+    & > .btn_container {
+        & > .btn_loading {
+            display: none;
+        }
+    }
+}
+
+.modal_new {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.46);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+    &:target {
+        display: flex;
+    }
+
+    & > .modal_show_tecnlogy {
+        background-color: #fff;
+        width: 100%;
+        max-width: 400px;
+        padding: 15px;
+        border-radius: 10px;
+        position: absolute;
+
+        & > .header_modal {
+            text-align: center;
+            border-bottom: 1px solid gray;
+            padding-bottom: 15px;
+
+            & > a {
+                top: 15px;
+                right: 15px;
+                position: absolute;
+                font-size: 20px;
+                color: #ff8400;
+                transform: color 0.2s ease;
+
+                &:hover {
+                    color: #a86523;
+                }
+            }
+        }
+
+        & > .body_modal {
+            padding-top: 20px;
+            & > div {
+                & > h5 {
+                    color: hsl(228, 8%, 56%);
+                    font-weight: 600;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+.container_small_crud {
+    display: flex;
+    column-gap: 30px;
+
+    & > div {
+        width: calc((100% / 2) - 15px);
+
+        .table_data {
+            & > thead {
+                & > tr {
+                    & > th:last-child {
+                        width: 100px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        flex-wrap: wrap;
+
+        & > div {
+            width: 100%;
+        }
+
+        & > div:last-child {
+            padding-bottom: 50px;
         }
     }
 }

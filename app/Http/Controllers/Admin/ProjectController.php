@@ -49,22 +49,19 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        dd($request->all());
-        // dd(Auth::user());
         $val_data = $request->validated();
-        // dd($val_data);
 
-
-        // dd($val_data);
         $val_data['slug'] = Str::slug($val_data['name'], '-');
 
         $name = $val_data['name'];
         if ($request->has('cover_image')) {
             $val_data['cover_image'] = Storage::disk('public')->put('uploads/images', $val_data['cover_image']);
+        } else {
+            $val_data['cover_image'] = "img/project-default.jpg";
         }
 
-
         $val_data['user_id'] = Auth::id();
+
 
         $project = Project::create($val_data);
 
@@ -88,7 +85,7 @@ class ProjectController extends Controller
             $project->technologies()->attach($val_data['technologies']);
         }
         // dd($project);
-        return to_route('admin.projects.index')->with('message', "You created new project: $name");
+        return to_route('admin.projects.index')->with('message', "Aggiunto con successo il progetto: $name");
     }
 
     /**
@@ -170,7 +167,7 @@ class ProjectController extends Controller
         } else {
             $project->collaborators()->detach();
         }
-        return to_route('admin.projects.index', $project)->with('message', "You updated project: $project->name");
+        return to_route('admin.projects.index', $project)->with('message', "Hai modificato con successo il progetto: $project->name");
     }
 
     /**
@@ -186,6 +183,6 @@ class ProjectController extends Controller
             Storage::disk('public')->delete($project->video);
         }
         $project->delete();
-        return redirect()->back()->with('message', "You delete  project: $project->name");
+        return redirect()->back()->with('error', "Hai Eliminato il progetto: $project->name");
     }
 }

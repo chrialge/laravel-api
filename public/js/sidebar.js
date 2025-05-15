@@ -41,12 +41,11 @@ if (localStorage.getItem('route')) {
 
     routes.forEach((route) => {
         route.parentElement.classList.remove("active")
-        console.log(route.parentElement)
+
     })
 
     routes.forEach((route) => {
 
-        console.log(route.getAttribute('href'), window.location.href)
         if (route.getAttribute('href') === window.location.href) {
             route.parentElement.classList.add('active');
         }
