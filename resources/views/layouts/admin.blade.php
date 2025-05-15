@@ -34,7 +34,7 @@
 <body>
     <div id="app" class="admin_layout">
 
-        <nav id="sidebar">
+        <nav id="sidebar" class="close">
             <ul>
 
                 <li>

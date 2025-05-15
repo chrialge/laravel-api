@@ -62,16 +62,10 @@ class ProjectController extends Controller
         if ($request->has('cover_image')) {
             $val_data['cover_image'] = Storage::disk('public')->put('uploads/images', $val_data['cover_image']);
         }
-        if ($request->has('video')) {
-            $val_data['video'] = Str::of($val_data['video'])->after('https://www.youtube.com/watch?v=');
-        }
 
 
-        // dd($val_data);
         $val_data['user_id'] = Auth::id();
-        //dd($val_data);
-        // dd($val_data['cover_image']);
-        // dd($val_data['slug'], $val_data);
+
         $project = Project::create($val_data);
 
 

@@ -1,78 +1,112 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container " style="height: 100%; padding: 30px 0;">
-        <div class="d-flex align-items-center justify-content-end gap-2">
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
+    <div class="container-show-project">
 
-            <a class="btn btn-dark" href="{{ route('admin.projects.edit', $project) }}"> <i
-                    class="fas fa-pencil-alt fa-sm fa-fw"></i>
-            </a>
+        {{-- header page --}}
+        <div class="header_page">
 
-        </div>
-        <div class="image_project pt-4">
-            @if (Str::contains($project->cover_image, 'https://'))
-                <img src="{{ $project->cover_image }}" alt="Image of project: {{ $project->title }}">
-            @else
-                <img width="100%" src="{{ asset('storage/' . $project->cover_image) }}"
-                    alt="Image of project: {{ $project->title }}">
-            @endif
-        </div>
-        <div class="d-flex justify-content-between align-items-lg-center py-5">
-
-            <div class="col">
-
-                <h3 class=" d-inline">Project Name: </h3>
-                <span style="font-size: 30px;">{{ $project->name }}</span>
+            {{-- name project --}}
+            <div class="name_project">
+                <h3 class="d-inline">Nome Progetto: </h3>
+                <span>{{ $project->name }}</span>
             </div>
 
+            {{-- button for action --}}
+            <div class="btn_action">
 
-            <div class="col d-flex justify-content-end gap-3">
-                <span><strong>Start date:</strong> {{ $project->start_date }}</span>
-                <span><strong>Finish date:</strong>
-                    @if (isset($project->finish_date))
-                        {{ $project->finish_date }}
-                    @else
-                        N/A
-                    @endif
+                {{-- action previous page --}}
+                <a href="{{ route('admin.projects.index') }}" class="btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
 
-                </span>
+                {{-- action update project --}}
+                <a class="btn" href="{{ route('admin.projects.edit', $project) }}">
+                    <i class="fas fa-pencil-alt fa-sm fa-fw"></i>
+                </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <h5 class=" d-inline py-2">Status: </h5>
-                @if ($project->status == 0)
-                    <span>
-                        Completed
-                        <td><i class="fa-solid fa-circle" style="color: #0fd212;"></i></td>
-                    </span>
-                @elseif ($project->STATUS == 1)
-                    <span>
-                        Incompleted
-                        <td><i class="fa-solid fa-circle" style="color: #ebee53;"></i></td>
-                    </span>
+
+        {{-- body page --}}
+        <div class="body_page">
+
+            {{-- image project --}}
+            <div class="image_project">
+                @if (Str::contains($project->cover_image, 'https://'))
+                    <img src="{{ $project->cover_image }}" alt="Image of project: {{ $project->title }}">
+                @elseif (Str::contains($project->cover_image, 'img/project-default'))
+                    <img width="100%" src="{{ asset('img/project-default.jpg') }}"
+                        alt="Image of project: {{ $project->title }}">
                 @else
-                    <span>
-                        don't initialized
-                        <td><i class="fa-solid fa-circle" style="color: #fa0000;"></i></td>
-                    </span>
+                    <img width="100%" src="{{ asset('storage/' . $project->cover_image) }}"
+                        alt="Image of project: {{ $project->title }}">
                 @endif
+            </div>
 
-                <span class="d-block py-2"><strong>URL: </strong> {{ $project->url }}</span>
+            {{-- info project --}}
+            <div class="info_project">
 
-                <span class="d-block py-2"><strong>Author: </strong>
-                    {{ $project->user ? $project->user->name : 'N/A' }}</span>
+                {{-- author/authors project --}}
+                <div class="author_project">
+                    @if ($project->collaborators)
+                        <h5>Autori:</h5>
+                        <span>
+                            @foreach ($project->collaborators as $collaborator)
+                                {{ $collaborator . ', ' }}
+                            @endforeach
+                            {{ $project->user->name . '.' }}
+                        </span>
+                    @else
+                        <h5>Autore:</h5>
+                        <span>
+                            {{ $project->user->name }}
+                        </span>
+                    @endif
+                </div>
 
+                {{-- typology project --}}
+                <div class="typology_project">
+                    <h5>Tipo di Progetto:</h5>
+                    <span>
+                        {{ $project->type ? $project->type->name : 'Indefinito' }}
+                    </span>
+                </div>
 
-                <span class="d-block py-2"><strong>Type:
-                    </strong>{{ $project->type ? $project->type->name : 'Untyped' }}</span>
+                {{-- dates project --}}
+                <div class="dates_project">
+                    <h5>Durate progetto:</h5>
+                    <span>{{ 'dal ' . date_format(date_create($project->start_date), 'd/m/Y') }}</span>
+                    @if (isset($project->finish_date))
+                        <span>{{ 'al ' . date_format(date_create($project->finish_date), 'd/m/Y') }}</span>
+                    @else
+                        <span>al ...</span>
+                    @endif
+                </div>
 
-                <span class=" d-block py-2">
-                    <strong>Technology: </strong>
+                {{-- status project --}}
+                <div class="status_project">
+                    <h5>Stato: </h5>
+                    @if ($project->status == 0)
+                        <span>
+                            Progetto finito
+                            <i class="fa-solid fa-circle" style="color: #0fd212;"></i>
+                        </span>
+                    @elseif ($project->STATUS == 1)
+                        <span>
+                            Progetto incompleto
+                            <i class="fa-solid fa-circle" style="color: #ebee53;"></i>
+                        </span>
+                    @else
+                        <span>
+                            Progetto inizializzato
+                            <i class="fa-solid fa-circle" style="color: #fa0000;"></i>
+                        </span>
+                    @endif
+                </div>
 
+                {{-- tecnology project --}}
+                <div class="tecnology_project">
+                    <h5>Tecnologie: </h5>
 
                     @forelse ($project->technologies as $technology)
                         @if ($loop->last)
@@ -84,55 +118,56 @@
                                 {{ $technology->name }}
                             </span>,
                         @endif
-
-
                     @empty
                         <span class=" badge bg-dark">
                             N/A
                         </span>
                     @endforelse
+                </div>
 
+                {{-- urls for project --}}
+                <div class="urls_project">
+                    <h5>Link:</h5>
+                    <a href="{{ $project->url }}" target="blank">vai su
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    @if ($project->demo_project)
+                        <a href="{{ $project->demo_project }}" target="blank">
+                            sito demo
+                            <i class="fa-solid fa-computer"></i>
+                        </a>
+                    @endif
 
-                </span>
+                    @if (isset($project->video))
+                        <a href="{{ $project->demo_project }}" target="blank">
+                            video progetto
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    @endif
+                </div>
+            </div>
+        </div>
 
-
-                <p class="py-2">
-                    <strong>Description:</strong>
+        <div class="bottom_page">
+            <div class="description_project">
+                <h5>Descrizione</h5>
+                <p>
                     @if (isset($project->description))
                         {{ $project->description }}
                     @else
                         N/A
                     @endif
-
                 </p>
-
             </div>
-            <div class="col-6">
+            <div class="notes_project">
+                <h5>Note</h5>
 
-
-                @if (isset($project->video))
-                    <h5>Videos:</h5>
-
-                    @if (Str::finish($project->video, '.mp4'))
-                        <iframe width="100%" height="315"
-                            src={{ 'https://www.youtube.com/embed/' . $project->video . '?si=JcZaDnzpiorjcbfV' }}
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    @endif
-                @endif
-                <p class="py-2">
-                    <strong>Notes:</strong>
-
-
-                    @if (isset($project->notes))
+                @if (count($project->notes) > 0)
+                    <p class="py-2">
                         {{ $project->notes }}
-                    @else
-                        N/A
-                    @endif
+                    </p>
+                @endif
 
-
-                </p>
             </div>
         </div>
 

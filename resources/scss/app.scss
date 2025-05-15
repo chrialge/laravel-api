@@ -279,7 +279,7 @@
 
         & > #sidebar {
             height: 60px;
-            width: 100%;
+            width: 100% !important;
             border-right: none;
             border-top: 1px solid var(--line-clr);
             padding: 0;
@@ -379,6 +379,8 @@
 
 // page central for every page admin
 .content_page {
+    overflow-x: hidden;
+    width: 100%;
     padding: 20px 10px 0 20px;
     height: 100%;
     transition: all 0.5s ease;
@@ -659,6 +661,116 @@
 
         & > .btn_loading {
             display: none;
+        }
+    }
+}
+
+.container-show-project {
+    padding-bottom: 40px;
+    margin: 20px 0;
+
+    & > .header_page {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+
+        & > .name_project {
+            & > h3 {
+                color: #ff8400;
+            }
+
+            & > span {
+                font-size: 25px;
+            }
+        }
+
+        & > .btn_action {
+            & > a {
+                background-color: #ff8400;
+                color: white;
+            }
+        }
+    }
+
+    & > .body_page {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & > .image_project {
+            width: calc(100% / 12 * 8);
+        }
+
+        & > .info_project {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border-radius: 7px;
+            box-shadow: 0px 0px 10px 5px #b8b8b8;
+
+            & > div {
+                padding-bottom: 10px;
+                & > h5 {
+                    color: #ff8400;
+                    display: inline-block;
+                }
+            }
+
+            & > div:last-child {
+                & > a {
+                    text-decoration: none;
+                    padding: 0.35rem 0.55rem;
+                    color: white;
+                    background-color: #ff8400;
+                    border-radius: 10px;
+                    transition: background-color 0.2s ease;
+
+                    &:hover {
+                        background-color: #a86523;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 1000px) {
+            flex-direction: column;
+
+            & > .info_project {
+                display: flex;
+                column-gap: 10px;
+                flex-wrap: wrap;
+                margin-bottom: 20px;
+            }
+
+            & > .image_project {
+                width: 100%;
+            }
+        }
+    }
+
+    & > .bottom_page {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+
+        & > div {
+            width: calc((100% / 12 * 6) - 10px);
+
+            & > h5 {
+                color: #ff8400;
+            }
+            & > p {
+                box-shadow: 0px 0px 10px 5px #b8b8b8;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            flex-wrap: wrap;
+            & > div {
+                width: 100%;
+            }
         }
     }
 }
