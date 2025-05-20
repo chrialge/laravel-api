@@ -79,6 +79,8 @@
                                     <i class="fa-solid fa-eye fs-sm fs-6"></i>
                                 </a>
 
+
+
                                 <a href="{{ route('admin.projects.edit', $project) }}" class="btn_action btn_update">
                                     <i class="fa-solid fa-pencil fs-6"></i>
                                 </a>

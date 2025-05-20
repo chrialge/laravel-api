@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('script')
+    <script src="{{ asset('js/typology_tecnlogy_script.js') }}"></script>
+@endsection
+
 @section('content')
     {{-- BREADCRUMBS --}}
     <ul class="list-unstyled d-flex gap-2 breadcrumb_page">
@@ -15,7 +19,7 @@
         </li>
         <li>
             <a href="#" class="state_active">
-                Tecnlogie
+                Tecnologie
             </a>
         </li>
     </ul>
@@ -50,26 +54,38 @@
                     @forelse ($technologies as $technology)
                         <tr class="">
                             <td>
-                                <form action="{{ route('admin.technologies.update', $technology) }}" method="post">
+                                <form action="{{ route('admin.technologies.update', $technology) }}" method="post"
+                                    class="form_small" onsubmit="formUpdate(this, event)">
                                     @csrf
 
                                     @method('PUT')
                                     <div class="mb-3 d-flex gap-2 flex-wrap">
 
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                        <input type="text"
+                                            class="form-control input_create @error('name') is-invalid @enderror"
                                             name="name" id="name" aria-describedby="nameHelper"
                                             placeholder="Lavarel-project" value="{{ $technology->name }}"
                                             style="min-width: 100px" />
 
-                                        <button class="btn btn-warning d-flex align-items-center gap-1" type="submit">
+                                        @error('name')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+
+
+
+                                    </div>
+
+
+                                    <div class="btn_container">
+                                        <button class="btn btn-warning" type="submit">
                                             <i class="fa fa-pencil" aria-hidden="true" style="font-size: 15px"></i>
                                             <span>Modifica</span>
                                         </button>
 
+                                        <button class="btn btn-warning btn_loading" disabled>
+                                            Attendi...
+                                        </button>
                                     </div>
-                                    @error('name')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
                                 </form>
                             </td>
 
@@ -89,7 +105,7 @@
                                     </a>
 
                                     <div id="modal_show_tecno-{{ $technology->id }}" class="modal_new">
-                                        <div class="modal_show_tecnlogy">
+                                        <div class="modal_show">
                                             <div class="header_modal">
                                                 <h2>
                                                     Tecnologia
@@ -141,26 +157,26 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="modalTitleId-{{ $technology->id }}">
-                                                        Attention!!⚡⚡ Deleting: {{ $technology->name }}
+                                                        Attenzione!!⚡⚡ Eliminazione: {{ $technology->name }}
                                                     </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    You are about to dlete this record. This operation is
-                                                    DESCTRUCTIVE!💣💣💣
+                                                    Sei sicuro di cancellare permanentemente, questa operazione sara
+                                                    irreversibile.💣💣💣
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">
-                                                        Close
+                                                        Chiudi
                                                     </button>
                                                     <form action="{{ route('admin.technologies.destroy', $technology) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger">
-                                                            Confirm
+                                                            Conferma
                                                         </button>
                                                     </form>
                                                 </div>
@@ -204,7 +220,8 @@
 
             @include('partials.validate')
 
-            <form action="{{ route('admin.technologies.store') }}" method="post" class="form_small">
+            <form action="{{ route('admin.technologies.store') }}" method="post" class="form_small"
+                onsubmit="formCreate(this, event)">
                 @csrf
 
                 <div class="mb-3">

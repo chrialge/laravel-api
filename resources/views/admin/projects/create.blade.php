@@ -37,7 +37,7 @@
     </ul>
 
     <div class="header_page">
-        <h2>Add new Project</h2>
+        <h2>Nuovo Progetto</h2>
         <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
