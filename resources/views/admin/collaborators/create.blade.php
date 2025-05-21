@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('script')
+    <script src="{{ asset('js/collaborator_validation.js') }}"></script>
+@endsection
+
 @section('content')
     {{-- BREADCRUMBS --}}
     <ul class="list-unstyled d-flex gap-2 breadcrumb_page">
@@ -42,9 +46,12 @@
     <form action="{{ route('admin.collaborators.store') }}" method="post" class="form_small">
         @csrf
         <div class="mb-3">
-            <label for=" name" class="form-label label_create">Name</label>
+            <label for=" name" class="form-label label_create">Nome*</label>
             <input type="text" class="form-control input_create @error('name') is-invalid @enderror" name="name"
-                id="name" aria-describedby="nameHelper" placeholder="task1" value="{{ old('name') }}" />
+                id="name" aria-describedby="nameHelper" placeholder="Francesco Rossi" value="{{ old('name') }}"
+                onblur="check_name()" onkeyup="hide_error_name()" />
+
+            <span class="error_js" id="error_name_js">Il nome deve essere di almeno 3 caratteri</span>
 
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -54,10 +61,16 @@
         <div class="mb-3">
             <label for="url_git" class="form-label label_create">
                 <i class="fa-brands fa-square-github"></i>
-                Account Github
+                Account Github*
             </label>
+
             <input type="text" class="form-control input_create @error('url_git') is-invalid @enderror" name="url_git"
-                id="url_git" aria-describedby="url_gitHelper" placeholder="task1" value="{{ old('url_git') }}" />
+                id="url_git" aria-describedby="url_gitHelper" placeholder="https://" value="{{ old('url_git') }}"
+                onkeyup="hide_error_url()" onblur="check_url()" />
+
+            <span class="error_js" id="error_url_js">
+                l'url non e valido
+            </span>
 
             @error('url_git')
                 <div class="text-danger">{{ $message }}</div>
@@ -66,7 +79,7 @@
 
 
         <div class="mb-3">
-            <label for="content" class="form-label label_create">Content</label>
+            <label for="content" class="form-label label_create">Contenuto/Note</label>
             <textarea class="form-control input_create @error('content') is-invalid @enderror" name="content" id="content"
                 rows="6">
                         {{ old('content') }}

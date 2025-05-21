@@ -804,6 +804,11 @@
                 box-shadow: 0 0 0 0.25rem #ff840051;
             }
         }
+
+        & > .error_js {
+            color: red;
+            display: none;
+        }
     }
 
     & > .btn_container {
