@@ -1,11 +1,31 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
+    {{-- BREADCRUMBS --}}
+    <ul class="list-unstyled d-flex gap-2 breadcrumb_page">
+        <li>
+            <a href="#" class="state_disactive">
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <span class="state_disactive">
+                /
+            </span>
+        </li>
+        <li>
+            <a href="#" class="state_active">
+                Profilo
+            </a>
+        </li>
+    </ul>
 
-<div class="container">
-    <h2 class="fs-4 text-secondary my-4">
-        {{ __('Profile') }}
-    </h2>
-    <div class="card p-4 mb-4 bg-white shadow rounded-lg">
+    <div class="header_page">
+        <h2>
+            {{ __('Profilo') }}
+        </h2>
+    </div>
+
+    <div class="card_profile">
 
         @include('profile.partials.update-profile-information-form')
 
@@ -24,6 +44,4 @@
         @include('profile.partials.delete-user-form')
 
     </div>
-</div>
-
 @endsection

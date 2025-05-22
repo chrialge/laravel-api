@@ -32,7 +32,7 @@
 
 
     <div class="header_page">
-        <h2>Tecnlogie</h2>
+        <h2>Tecnologie</h2>
         <a href="{{ route('admin.projects.index') }}" class="btn btn-dark">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             Ritorna ai progetti

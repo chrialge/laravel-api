@@ -25,13 +25,12 @@ function hide_error_name() {
     }
 }
 
-function check_url() {
-    const valueInput = document.getElementById('url_git').value.trim();
-    const errorMessage = document.getElementById('error_url_js');
-    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+function check_content() {
+    const valueInput = document.getElementById('content').value.trim();
+    const errorMessage = document.getElementById('error_content_js');
 
-    if (!valueInput.match(regex)) {
-        document.getElementById('url_git').style.borderColor = "red";
+    if (valueInput.length <= 20) {
+        document.getElementById('content').style.borderColor = "red";
         errorMessage.style.display = "block";
         return false;
     } else {
@@ -39,18 +38,19 @@ function check_url() {
     }
 }
 
-function hide_error_url() {
-    const valueInput = document.getElementById('url_git').value.trim();
-    const errorMessage = document.getElementById('error_url_js');
-    const regex = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+function hide_error_content() {
+    const valueInput = document.getElementById('content').value.trim();
+    const errorMessage = document.getElementById('error_content_js');
 
-    if (valueInput.match(regex)) {
+
+    if (valueInput.length > 20) {
+        document.getElementById('content').style.borderColor = "";
         errorMessage.style.display = "";
-        document.getElementById('url_git').style.borderColor = "";
     }
 }
 
-function check_form_create(e) {
+function check_form_update(e) {
+
 
     const btnEl = document.getElementById('btn_confirm');
     const btnLoading = document.querySelector('.btn_loading');
@@ -58,34 +58,14 @@ function check_form_create(e) {
     btnEl.style.display = 'none';
     btnLoading.style.display = 'block';
 
-    if (!check_name) {
+    if (!check_name()) {
         e.preventDefault();
         btnEl.style.display = '';
         btnLoading.style.display = '';
     }
 
-    if (!check_url) {
-        e.preventDefault();
-        btnEl.style.display = '';
-        btnLoading.style.display = '';
-    }
-}
+    if (!check_content()) {
 
-function check_form_update() {
-
-    const btnEl = document.getElementById('btn_confirm');
-    const btnLoading = document.querySelector('.btn_loading');
-
-    btnEl.style.display = 'none';
-    btnLoading.style.display = 'block';
-
-    if (!check_name) {
-        e.preventDefault();
-        btnEl.style.display = '';
-        btnLoading.style.display = '';
-    }
-
-    if (!check_url) {
         e.preventDefault();
         btnEl.style.display = '';
         btnLoading.style.display = '';

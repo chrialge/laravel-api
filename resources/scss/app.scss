@@ -290,6 +290,7 @@
             overflow-x: auto;
             display: flex;
             justify-content: center;
+            z-index: 9999;
 
             &::-webkit-scrollbar {
                 height: 7px;
@@ -785,7 +786,8 @@
 
 .form_small {
     padding-bottom: 20px;
-    & > .mb-3 {
+    & > .mb-3,
+    & > .mb-2 {
         & > .label_create {
             color: hsl(228, 8%, 56%);
             font-weight: 600;
@@ -917,5 +919,25 @@
 @media screen and (max-width: 450px) {
     .d-none-mobile {
         display: none;
+    }
+}
+
+.card_profile {
+    border: 2px solid #ff8400;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 30px;
+
+    & > section {
+        & > header {
+            & > h2 {
+                color: #ff8400;
+            }
+
+            & > p {
+                color: hsl(228, 8%, 56%);
+            }
+        }
     }
 }

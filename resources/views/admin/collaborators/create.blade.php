@@ -43,7 +43,8 @@
 
     @include('partials.validate')
 
-    <form action="{{ route('admin.collaborators.store') }}" method="post" class="form_small">
+    <form action="{{ route('admin.collaborators.store') }}" method="post" class="form_small"
+        onsubmit="check_form_create(event)">
         @csrf
         <div class="mb-3">
             <label for=" name" class="form-label label_create">Nome*</label>
@@ -51,7 +52,10 @@
                 id="name" aria-describedby="nameHelper" placeholder="Francesco Rossi" value="{{ old('name') }}"
                 onblur="check_name()" onkeyup="hide_error_name()" />
 
-            <span class="error_js" id="error_name_js">Il nome deve essere di almeno 3 caratteri</span>
+            <span class="error_js" id="error_name_js">
+                Il nome deve essere di almeno 3 caratteri, e sono accetati solo
+                caratteri alfabetici
+            </span>
 
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -90,7 +94,7 @@
         </div>
 
         <div class="btn_container">
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary" id="btn_confirm">
                 Crea
             </button>
 
